@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fone Neptune - OX Gaming</title>
+<!-- Fontes Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #050507;
+    }
+
+    /* RESET ESPECÍFICO PARA O WRAPPER */
+    #ox-landing-wrapper {
+        font-family: 'Space Mono', monospace;
+        color: #ffffff;
+        background-color: #050507;
+        overflow-x: clip;
+        
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        box-sizing: border-box;
+        line-height: 1.6;
+        
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        background-position: center top;
+    }
+
+    #ox-landing-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #050507;
+        pointer-events: none;
+        z-index: 50;
+    }
+
+    #ox-landing-wrapper * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #ox-landing-wrapper a {
+        text-decoration: none;
+    }
+
+    #ox-landing-wrapper img {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* --- TIPOGRAFIA --- */
+    #ox-landing-wrapper h1, 
+    #ox-landing-wrapper h2, 
+    #ox-landing-wrapper h3 {
+        font-family: 'Rajdhani', sans-serif;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0.5em;
+    }
+
+    #ox-landing-wrapper h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; letter-spacing: -0.02em; color: #ffffff; }
+    #ox-landing-wrapper h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500; color: #ffffff; }
+    #ox-landing-wrapper h3 { font-size: 1.5rem; color: #ffffff; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    #ox-landing-wrapper p { font-size: 1rem; color: #888899; margin-bottom: 1rem; }
+
+    #ox-landing-wrapper .ox-tech-text {
+        font-size: 0.75rem;
+        color: #009fe3;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 1rem;
+        display: block;
+        font-family: 'Space Mono', monospace;
+    }
+
+    /* --- ELEMENTOS DE UI --- */
+    #ox-landing-wrapper .ox-hud-line {
+        width: 100%;
+        height: 1px;
+        background: #009fe3;
+        position: relative;
+        margin: 2rem 0;
+        opacity: 0.5;
+    }
+    
+    #ox-landing-wrapper .ox-hud-line::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: -2px;
+        width: 5px;
+        height: 5px;
+        background: #009fe3;
+    }
+
+    /* --- BOTOES COM EFEITO ROLLING + SLIDE --- */
+    #ox-landing-wrapper .ox-btn,
+    #ox-landing-wrapper .ox-btn-download {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border: 1px solid #009fe3;
+        color: #009fe3;
+        font-family: 'Space Mono', monospace;
+        text-transform: uppercase;
+        font-weight: 700;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        background: transparent;
+        z-index: 1;
+        text-align: center;
+        width: auto;
+    }
+
+    #ox-landing-wrapper .ox-btn-download {
+        width: 100%; 
+        font-size: 0.8rem;
+        padding: 0.8rem;
+    }
+
+    #ox-landing-wrapper .ox-btn span,
+    #ox-landing-wrapper .ox-btn-download span {
+        display: block;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+        z-index: 2;
+    }
+
+    #ox-landing-wrapper .ox-btn::after,
+    #ox-landing-wrapper .ox-btn-download::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+        z-index: 2;
+        color: #050507;
+    }
+
+    #ox-landing-wrapper .ox-btn::before,
+    #ox-landing-wrapper .ox-btn-download::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 0; height: 100%;
+        background: #009fe3;
+        transition: width 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+        z-index: 1;
+    }
+
+    #ox-landing-wrapper .ox-btn:hover::before,
+    #ox-landing-wrapper .ox-btn-download:hover::before {
+        width: 100%;
+    }
+
+    #ox-landing-wrapper .ox-btn:hover span,
+    #ox-landing-wrapper .ox-btn-download:hover span {
+        transform: translateY(-100%);
+    }
+
+    #ox-landing-wrapper .ox-btn:hover::after,
+    #ox-landing-wrapper .ox-btn-download:hover::after {
+        transform: translateY(-100%);
+    }
+
+    /* --- DECORACOES E OUTROS --- */
+    #ox-landing-wrapper .ox-corner-decor {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #009fe3;
+        pointer-events: none;
+        z-index: 5;
+    }
+    #ox-landing-wrapper .ox-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+    #ox-landing-wrapper .ox-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+    /* --- HERO SECTION --- */
+    #ox-landing-wrapper .ox-hero {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 0; 
+        position: relative;
+        overflow: hidden;
+    }
+
+    #ox-landing-wrapper .ox-hero-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 90%;
+        height: 100%;
+        background: url('https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/HeadsetNeptuneHero.webp') no-repeat center center;
+        background-size: cover;
+        mask-image: linear-gradient(to right, transparent, black 50%);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 50%);
+        z-index: 0;
+        opacity: 0.9;
+    }
+
+    #ox-landing-wrapper .ox-hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding-left: max(2rem, calc((100vw - 1440px) / 2));
+        padding-right: max(2rem, calc((100vw - 1440px) / 2));
+    }
+
+    /* --- ESTILOS DO NOVO LOGO ANIMADO (Integrado) --- */
+    #ox-landing-wrapper .logo-container {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        overflow: visible; 
+        /* Ajustes para encaixar no layout original */
+        transform: scale(0.6); 
+        transform-origin: left top;
+        margin-bottom: -2.5rem;
+    }
+
+    #ox-landing-wrapper .vector {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    #ox-landing-wrapper .st0 { fill: #ffffff; }
+    #ox-landing-wrapper .st1 { fill: #009fe3; }
+
+    /* Animações do Logo */
+    @keyframes ciclo-visibilidade-glow {
+        0%   { opacity: 1; }
+        55%  { opacity: 1; } 
+        60%  { opacity: 0; } 
+        95%  { opacity: 0; } 
+        100% { opacity: 1; }
+    }
+
+    @keyframes ciclo-visibilidade-normal {
+        0%   { opacity: 0; }
+        55%  { opacity: 0; }
+        60%  { opacity: 1; }
+        95%  { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    @keyframes hue-rotate-anim {
+        from {
+            filter: drop-shadow(0 0 10px #0072ff) 
+                    drop-shadow(0 0 20px #0072ff) 
+                    drop-shadow(0 0 40px #0072ff) 
+                    hue-rotate(0deg);
+        }
+        to {
+            filter: drop-shadow(0 0 10px #0072ff) 
+                    drop-shadow(0 0 20px #0072ff) 
+                    drop-shadow(0 0 40px #0072ff) 
+                    hue-rotate(360deg);
+        }
+    }
+
+    #ox-landing-wrapper .vector-1 {
+        opacity: 0;
+        animation: ciclo-visibilidade-normal 5s linear infinite;
+    }
+
+    #ox-landing-wrapper .vector-2 {
+        opacity: 1;
+        animation: ciclo-visibilidade-glow 5s linear infinite;
+    }
+
+    #ox-landing-wrapper .vector-2 .glow-part {
+        animation: hue-rotate-anim 3s linear infinite;
+        filter: drop-shadow(0 0 10px #0072ff) 
+                drop-shadow(0 0 20px #0072ff) 
+                drop-shadow(0 0 40px #0072ff);
+    }
+    /* --- FIM LOGO ANIMADO --- */
+    
+    #ox-landing-wrapper .ox-hero-content p,
+    #ox-landing-wrapper .ox-hero-content h1 {
+        max-width: 800px;
+    }
+
+    #ox-landing-wrapper .ox-hero-status {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        font-size: 0.8rem;
+        color: #009fe3;
+    }
+
+    #ox-landing-wrapper .ox-hero-status span {
+        border: 1px solid rgba(0, 159, 227, 0.2);
+        padding: 0.2rem 0.5rem;
+    }
+
+    /* --- MARQUEE --- */
+    #ox-landing-wrapper .ox-scrolling-strip {
+        background: #009fe3;
+        color: #050507;
+        padding: 0.8rem 0;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 10;
+        width: 100%; 
+    }
+
+    #ox-landing-wrapper .ox-strip-content {
+        display: inline-block;
+        animation: ox-scroll 30s linear infinite;
+    }
+
+    @keyframes ox-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-25%); } 
+    }
+
+    /* --- SECOES LAMINAS --- */
+    #ox-landing-wrapper .ox-section-lamina {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        position: relative;
+        min-height: 600px;
+        max-height: 600px;
+        height: 600px;
+        width: 100%;
+    }
+
+    #ox-landing-wrapper .ox-lamina-visual {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        height: 100%;
+        max-height: 600px;
+        background: #000;
+    }
+
+    #ox-landing-wrapper .ox-lamina-visual img {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+    }
+    
+    #ox-landing-wrapper .ox-lamina-visual video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s ease;
+    }
+    
+    #ox-landing-wrapper .ox-section-lamina:hover .ox-lamina-visual img,
+    #ox-landing-wrapper .ox-section-lamina:hover .ox-lamina-visual video {
+        transform: scale(1.05);
+    }
+
+    #ox-landing-wrapper .ox-lamina-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        gap: 1.25rem;
+        padding: 4rem;
+    }
+
+    #ox-landing-wrapper .ox-section-lamina .ox-lamina-content h2 {
+        margin-bottom: 0;
+    }
+
+    #ox-landing-wrapper .ox-section-lamina .ox-lamina-content .ox-hud-line {
+        margin: 1.25rem 0;
+    }
+
+    #ox-landing-wrapper .ox-pos-left {
+        padding-left: max(2rem, calc((100vw - 1440px) / 2));
+        padding-right: 4rem;
+    }
+
+    #ox-landing-wrapper .ox-pos-right {
+        padding-right: max(2rem, calc((100vw - 1440px) / 2));
+        padding-left: 4rem;
+    }
+
+    #ox-landing-wrapper .ox-style-dark {
+        background: #050507; 
+    }
+
+    /* --- ESTRUTURA DO HOTSPOT / SPOTLIGHT CONTROLES (LÂMINA 05) --- */
+    #ox-landing-wrapper .ox-hotspot-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        cursor: default;
+        --ox-hs-mute-top: 28%;
+        --ox-hs-mute-left: 44%;
+        --ox-hs-mute-width: 9%;
+        --ox-hs-mute-height: 15%;
+        --ox-hs-volume-top: 48%;
+        --ox-hs-volume-left: 54%;
+        --ox-hs-volume-width: 12%;
+        --ox-hs-volume-height: 24%;
+    }
+
+    #ox-landing-wrapper .ox-abs-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    #ox-landing-wrapper .ox-img-bw {
+        z-index: 1;
+        filter: grayscale(100%) brightness(0.2) contrast(1.2);
+    }
+
+    #ox-landing-wrapper .ox-hotspot-wrapper img.ox-img-color,
+    #ox-landing-wrapper .ox-hotspot-wrapper .ox-img-color,
+    #ox-landing-wrapper .ox-img-color {
+        z-index: 2;
+        clip-path: inset(0% 0% 0% 0%);
+        transition: clip-path 0.45s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        will-change: clip-path;
+    }
+
+    #ox-landing-wrapper .ox-hotspot-wrapper .ox-abs-img,
+    #ox-landing-wrapper .ox-section-lamina:hover .ox-hotspot-wrapper .ox-abs-img {
+        transform: none !important;
+    }
+
+    #ox-landing-wrapper .ox-hs-trigger {
+        position: absolute;
+        z-index: 10;
+        cursor: crosshair;
+        width: var(--ox-hs-width, 18%);
+        height: var(--ox-hs-height, 18%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #ox-landing-wrapper .ox-hotspot-wrapper:has(.ox-hs-trigger:hover) .ox-hs-trigger:not(:hover) {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.95);
+    }
+
+    #ox-landing-wrapper .ox-hs-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid #009fe3;
+        transition: all 0.3s ease;
+    }
+
+    #ox-landing-wrapper .ox-hs-box span {
+        position: absolute;
+        display: block;
+    }
+
+    #ox-landing-wrapper .ox-hs-box span:nth-child(1) {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #009fe3);
+        animation: ox-btn-anim1 1s linear infinite;
+    }
+    @keyframes ox-btn-anim1 {
+        0% { left: -100%; }
+        50%, 100% { left: 100%; }
+    }
+
+    #ox-landing-wrapper .ox-hs-box span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #009fe3);
+        animation: ox-btn-anim2 1s linear infinite;
+        animation-delay: 0.25s;
+    }
+    @keyframes ox-btn-anim2 {
+        0% { top: -100%; }
+        50%, 100% { top: 100%; }
+    }
+
+    #ox-landing-wrapper .ox-hs-box span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, #009fe3);
+        animation: ox-btn-anim3 1s linear infinite;
+        animation-delay: 0.5s;
+    }
+    @keyframes ox-btn-anim3 {
+        0% { right: -100%; }
+        50%, 100% { right: 100%; }
+    }
+
+    #ox-landing-wrapper .ox-hs-box span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #009fe3);
+        animation: ox-btn-anim4 1s linear infinite;
+        animation-delay: 0.75s;
+    }
+    @keyframes ox-btn-anim4 {
+        0% { bottom: -100%; }
+        50%, 100% { bottom: 100%; }
+    }
+
+    #ox-landing-wrapper .ox-hs-trigger:hover .ox-hs-box span {
+        opacity: 0;
+        animation: none;
+    }
+
+    #ox-landing-wrapper .ox-hs-trigger:hover .ox-hs-box {
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    #ox-landing-wrapper .ox-hs-trigger:hover .ox-hs-label {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    #ox-landing-wrapper .ox-hotspot-wrapper:has(.ox-hs-mute:hover) .ox-img-color {
+        clip-path: inset(
+            var(--ox-hs-mute-top)
+            calc(100% - (var(--ox-hs-mute-left) + var(--ox-hs-mute-width)))
+            calc(100% - (var(--ox-hs-mute-top) + var(--ox-hs-mute-height)))
+            var(--ox-hs-mute-left)
+        );
+    }
+
+    #ox-landing-wrapper .ox-hotspot-wrapper:has(.ox-hs-volume:hover) .ox-img-color {
+        clip-path: inset(
+            var(--ox-hs-volume-top)
+            calc(100% - (var(--ox-hs-volume-left) + var(--ox-hs-volume-width)))
+            calc(100% - (var(--ox-hs-volume-top) + var(--ox-hs-volume-height)))
+            var(--ox-hs-volume-left)
+        );
+    }
+
+    #ox-landing-wrapper .ox-hs-mute {
+        top: var(--ox-hs-mute-top);
+        left: var(--ox-hs-mute-left);
+        --ox-hs-width: var(--ox-hs-mute-width);
+        --ox-hs-height: var(--ox-hs-mute-height);
+    }
+
+    #ox-landing-wrapper .ox-hs-volume {
+        top: var(--ox-hs-volume-top);
+        left: var(--ox-hs-volume-left);
+        --ox-hs-width: var(--ox-hs-volume-width);
+        --ox-hs-height: var(--ox-hs-volume-height);
+    }
+
+    #ox-landing-wrapper .ox-hs-label {
+        position: absolute;
+        left: 110%;
+        top: 0;
+        background: rgba(5, 5, 7, 0.9);
+        border: 1px solid #009fe3;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: 'Rajdhani', sans-serif;
+        opacity: 0;
+        transform: translateX(-10px);
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 20;
+    }
+    #ox-landing-wrapper .ox-hs-label::before {
+        content: '// ';
+        color: #009fe3;
+    }
+
+    #ox-landing-wrapper .ox-style-blue {
+        background: #009fe3;
+        color: #050507;
+    }
+    #ox-landing-wrapper .ox-style-blue h2, 
+    #ox-landing-wrapper .ox-style-blue p, 
+    #ox-landing-wrapper .ox-style-blue .ox-tech-text {
+        color: #050507;
+    }
+    #ox-landing-wrapper .ox-style-blue .ox-hud-line {
+        background: #050507;
+    }
+    #ox-landing-wrapper .ox-style-blue .ox-hud-line::after {
+        background: #050507;
+    }
+
+    /* --- LAMINA FSR --- */
+    #ox-landing-wrapper .ox-fsr-lamina {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #ox-landing-wrapper .ox-fsr-visual {
+        position: relative;
+        background: #000;
+        overflow: hidden;
+    }
+
+    #ox-landing-wrapper .ox-fsr-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #ox-landing-wrapper .ox-fsr-indicators {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 0;
+        right: 0;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        display: grid;
+        justify-items: start;
+        gap: 0.55rem;
+        z-index: 2;
+    }
+
+    #ox-landing-wrapper .ox-fsr-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        width: clamp(220px, 28vw, 320px);
+        max-width: 100%;
+        background: rgba(5, 5, 7, 0.58);
+        border: 1px solid rgba(0, 159, 227, 0.4);
+        color: #d8eaf6;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.32rem 0.5rem;
+        backdrop-filter: blur(2px);
+    }
+
+    #ox-landing-wrapper .ox-fsr-ind-label {
+        display: inline-block;
+        flex: 1;
+    }
+
+    #ox-landing-wrapper .ox-fsr-ind-status {
+        min-width: 3.2ch;
+        text-align: right;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    #ox-landing-wrapper .ox-fsr-ind-status::before {
+        content: 'ON';
+        color: #11b7ff;
+        opacity: 1;
+        display: inline-block;
+    }
+
+    #ox-landing-wrapper .ox-fsr-ind-switch {
+        width: 28px;
+        height: 15px;
+        border-radius: 999px;
+        background: rgba(0, 159, 227, 0.3);
+        border: 1px solid rgba(0, 159, 227, 0.65);
+        position: relative;
+        flex: 0 0 auto;
+    }
+
+    #ox-landing-wrapper .ox-fsr-ind-switch::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #11b7ff;
+        box-shadow: 0 0 8px rgba(17, 183, 255, 0.7);
+        transform: translateX(13px);
+    }
+
+    /* --- LAMINA PERFORMANCE --- */
+    #ox-landing-wrapper .ox-performance-section {
+        overflow: hidden;
+    }
+
+    #ox-landing-wrapper .ox-performance-subtitle {
+        color: #b8c6d1;
+        max-width: 780px;
+        margin-bottom: 0.5rem;
+    }
+
+    #ox-landing-wrapper .ox-performance-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    #ox-landing-wrapper .ox-performance-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: #dce8f0;
+        font-size: 0.84rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    #ox-landing-wrapper .ox-performance-legend i {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        border-radius: 2px;
+    }
+
+    #ox-landing-wrapper .ox-performance-chart {
+        --chart-pad-x: 0px;
+        --plot-inset-left: 3px;
+        --plot-inset-right: 10px;
+        --label-col: 200px;
+        --perf-gap: 0.85rem;
+        --bar-left-offset: calc(var(--chart-pad-x) + var(--label-col) + var(--perf-gap));
+        --bar-right-offset: var(--chart-pad-x);
+        position: relative;
+        border: 0;
+        background: transparent;
+        padding: 0 0 1.45rem 0;
+    }
+
+    #ox-landing-wrapper .ox-performance-chart::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 1.45rem;
+        left: calc(var(--bar-left-offset) + var(--plot-inset-left));
+        right: calc(var(--bar-right-offset) + var(--plot-inset-right));
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.09) 0 1px,
+            transparent 1px 100%
+        );
+        background-size: 20% 100%;
+        background-repeat: repeat-x;
+        border-right: 1px solid rgba(255, 255, 255, 0.09);
+        pointer-events: none;
+    }
+
+    #ox-landing-wrapper .ox-perf-row {
+        display: grid;
+        grid-template-columns: var(--label-col) minmax(0, 1fr);
+        gap: var(--perf-gap);
+        align-items: center;
+        padding: 0.62rem 0;
+        border-bottom: 1px solid rgba(0, 159, 227, 0.16);
+        transition: background-color 0.35s ease;
+    }
+
+    #ox-landing-wrapper .ox-perf-row:last-child {
+        border-bottom: 0;
+    }
+
+    #ox-landing-wrapper .ox-perf-row:hover {
+        background: rgba(0, 159, 227, 0.1);
+    }
+
+    #ox-landing-wrapper .ox-perf-name {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.42rem;
+        line-height: 0.92;
+        color: #f2f7fb;
+        letter-spacing: 0.01em;
+        transition: color 0.3s ease;
+    }
+
+    #ox-landing-wrapper .ox-perf-row:hover .ox-perf-name {
+        color: #9ee6ff;
+    }
+
+    #ox-landing-wrapper .ox-perf-bars {
+        display: grid;
+        gap: 0.3rem;
+    }
+
+    #ox-landing-wrapper .ox-perf-bar {
+        position: relative;
+        height: 10px;
+        border-radius: 0;
+        width: var(--w, 0%);
+        transform-origin: left center;
+        animation: ox-perf-load 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        transition: filter 0.25s ease, transform 0.25s ease;
+    }
+
+    #ox-landing-wrapper .ox-perf-row:hover .ox-perf-bar {
+        filter: brightness(1.12);
+        transform: none;
+    }
+
+    #ox-landing-wrapper .ox-perf-bar::after {
+        content: attr(data-fps);
+        position: absolute;
+        right: -52px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.66rem;
+        color: #c6d7e3;
+        letter-spacing: 0.05em;
+    }
+
+    #ox-landing-wrapper .ox-rx580 { background: #009fe3; }
+    #ox-landing-wrapper .ox-rx570 { background: #8da6bf; }
+    #ox-landing-wrapper .ox-rx470 { background: #3f4f5d; }
+
+    #ox-landing-wrapper .ox-performance-axis {
+        position: relative;
+        position: absolute;
+        left: var(--bar-left-offset);
+        right: var(--bar-right-offset);
+        bottom: 0;
+        height: 0.9rem;
+        color: rgba(223, 236, 246, 0.72);
+        font-size: 0.68rem;
+        letter-spacing: 0.02em;
+    }
+
+    #ox-landing-wrapper .ox-performance-axis span {
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        line-height: 1;
+    }
+
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(1) {
+        left: 0%;
+        transform: translateX(0);
+    }
+
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(2) { left: 20%; }
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(3) { left: 40%; }
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(4) { left: 60%; }
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(5) { left: 80%; }
+
+    #ox-landing-wrapper .ox-performance-axis span:nth-child(6) {
+        left: 100%;
+        transform: translateX(-100%);
+    }
+
+    #ox-landing-wrapper .ox-performance-visual {
+        position: relative;
+        min-height: 520px;
+        isolation: isolate;
+    }
+
+    #ox-landing-wrapper .ox-performance-visual::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(5, 5, 7, 0.08), rgba(5, 5, 7, 0.5));
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    #ox-landing-wrapper .ox-perf-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(1.04);
+        transition: opacity 0.38s ease, transform 0.7s ease;
+    }
+
+    #ox-landing-wrapper .ox-perf-img.is-default {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-fortnite:hover) .ox-perf-img,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-warzone:hover) .ox-perf-img,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-rdr2:hover) .ox-perf-img,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-cyberpunk:hover) .ox-perf-img {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-fortnite:hover) .ox-perf-img--fortnite,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-warzone:hover) .ox-perf-img--warzone,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-rdr2:hover) .ox-perf-img--rdr2,
+    #ox-landing-wrapper .ox-performance-section:has(.ox-game-cyberpunk:hover) .ox-perf-img--cyberpunk {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    @keyframes ox-perf-load {
+        from { transform: scaleX(0.45); opacity: 0.25; }
+        to { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* --- FEATURES --- */
+    #ox-landing-wrapper .ox-features-section {
+        padding: 6rem 0 0 0; 
+        background: #050507;
+    }
+
+    #ox-landing-wrapper .ox-features-header {
+        text-align: center;
+        padding-left: max(2rem, calc((100vw - 1440px) / 2));
+        padding-right: max(2rem, calc((100vw - 1440px) / 2));
+        margin-bottom: 4rem;
+    }
+    
+    #ox-landing-wrapper .ox-features-header .ox-hud-line {
+        max-width: 100px;
+        margin: 2rem auto;
+    }
+    #ox-landing-wrapper .ox-features-header p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #ox-landing-wrapper .ox-features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1px;
+        background: rgba(255,255,255,0.0);
+        width: 100%;
+        padding-left: max(0px, calc((100vw - 1440px) / 2));
+        padding-right: max(0px, calc((100vw - 1440px) / 2));
+        margin-bottom: 50px;
+    }
+
+    #ox-landing-wrapper .ox-feature-card {
+        background: #0f0f13;
+        position: relative;
+        height: 500px; 
+        overflow: hidden; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; 
+    }
+
+    #ox-landing-wrapper .ox-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    #ox-landing-wrapper .ox-card-bg::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to top, rgba(5,5,7,0.5) 0%, rgba(5,5,7,0.25) 50%, rgba(5,5,7,0.1) 100%);
+        z-index: 2;
+        pointer-events: none;
+        transition: background 0.5s ease;
+    }
+    
+    #ox-landing-wrapper .ox-feature-card:hover .ox-card-bg::after {
+        background: linear-gradient(to top, rgba(5,5,7,0.95) 0%, rgba(5,5,7,0.5) 50%, rgba(5,5,7,0.1) 100%);
+    }
+
+    #ox-landing-wrapper .ox-card-content {
+        position: relative;
+        z-index: 3;
+        padding: 2.5rem;
+        width: 100%;
+        transform: translateY(120px); 
+        transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    #ox-landing-wrapper .ox-icon-zone {
+        font-size: 2rem;
+        color: #009fe3;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(0, 159, 227, 0.5);
+        background: rgba(0, 0, 0, 0.3);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Rajdhani', sans-serif;
+        backdrop-filter: blur(5px);
+    }
+
+    #ox-landing-wrapper .ox-card-desc {
+        opacity: 0; 
+        transform: translateY(20px);
+        transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    }
+
+    #ox-landing-wrapper .ox-card-tech-id {
+        margin-top: 1.5rem;
+        font-size: 0.7rem;
+        color: #009fe3;
+        opacity: 0;
+        transition: opacity 0.4s ease 0.2s;
+    }
+
+    #ox-landing-wrapper .ox-feature-card:hover .ox-card-bg {
+        transform: translateY(-40px) scale(1.25); 
+        filter: grayscale(100%) contrast(1.2); 
+    }
+
+    #ox-landing-wrapper .ox-feature-card:hover .ox-card-content {
+        transform: translateY(0); 
+    }
+
+    #ox-landing-wrapper .ox-feature-card:hover .ox-card-desc,
+    #ox-landing-wrapper .ox-feature-card:hover .ox-card-tech-id {
+        opacity: 1; 
+        transform: translateY(0);
+    }
+
+    /* --- DOWNLOADS --- */
+    #ox-landing-wrapper .ox-downloads-section {
+        padding: 6rem 0;
+        background: #09090c;
+        text-align: center;
+        border-top: 1px solid rgba(0, 159, 227, 0.2);
+    }
+
+    #ox-landing-wrapper .ox-product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        width: 100%;
+        margin: 4rem auto;
+        
+        padding-left: max(2rem, calc((100vw - 1440px) / 2));
+        padding-right: max(2rem, calc((100vw - 1440px) / 2));
+    }
+
+    #ox-landing-wrapper .ox-product-grid:has(> :last-child:nth-child(1)),
+    #ox-landing-wrapper .ox-product-grid:has(> :last-child:nth-child(2)) {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    #ox-landing-wrapper .ox-product-card {
+        background: #0f0f13;
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 2rem;
+        transition: transform 0.3s, border-color 0.3s;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #ox-landing-wrapper .ox-product-card:hover {
+        transform: translateY(-5px);
+        border-color: #009fe3;
+    }
+
+    #ox-landing-wrapper .ox-download-box {
+        height: 120px;
+        background: rgba(0, 159, 227, 0.05);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px dashed rgba(0, 159, 227, 0.3);
+        color: #009fe3;
+        font-size: 3rem;
+    }
+
+    #ox-landing-wrapper .ox-prod-name {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.5rem;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    #ox-landing-wrapper .ox-prod-tag {
+        color: #009fe3;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+    }
+
+    #ox-landing-wrapper .ox-controls-img {
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    #ox-landing-wrapper .ox-controls-img:hover {
+        opacity: 1;
+    }
+    
+    /* --- SEO FOOTER --- */
+    #ox-landing-wrapper .ox-seo-container {
+        background: #020203;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 3rem 0;
+        margin-top: -1px;
+        text-align: left;
+    }
+
+    #ox-landing-wrapper .ox-seo-wrapper {
+        padding-left: max(2rem, calc((100vw - 1440px) / 2));
+        padding-right: max(2rem, calc((100vw - 1440px) / 2));
+    }
+
+    #ox-landing-wrapper .ox-seo-text {
+        font-size: 0.85rem;
+        line-height: 1.8;
+        color: #555566;
+        max-width: 900px;
+        text-align: center;
+        margin: auto;
+    }
+    
+    #ox-landing-wrapper .ox-seo-text strong {
+        color: #777788;
+    }
+    
+    /* --- RGB CONFIGURÁVEL --- */
+    .ox-rgb-section {
+        padding: 6rem 0;
+        background: #101015;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .ox-rgb-section .ox-features-header {
+        width: 100%;
+    }
+
+    /* ==========================================================================
+       LÂMINA 05: OUÇA ANTES DE VER (ANIMAÇÃO FRAME A FRAME 60FPS COM SCROLL)
+       ========================================================================== */
+    #ox-landing-wrapper .ox-exploded-section {
+        position: relative;
+        width: 100%;
+        height: 150vh;
+        background: #050507;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0, 159, 227, 0.2);
+        border-bottom: 1px solid rgba(0, 159, 227, 0.2);
+    }
+
+    #ox-landing-wrapper .ox-exploded-sticky {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 2.5rem 1.5rem 1.5rem;
+    }
+
+    #ox-landing-wrapper .ox-exploded-header {
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+    }
+
+    #ox-landing-wrapper .ox-exploded-stage {
+        position: relative;
+        width: 100%;
+        max-width: 1100px;
+        height: 520px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #ox-landing-wrapper .ox-exp-canvas-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 1100px;
+        aspect-ratio: 16 / 9;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #ox-landing-wrapper .ox-exp-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9));
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    /* Linha HUD azul do Callout */
+    #ox-landing-wrapper .ox-exp-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    #ox-landing-wrapper .ox-exp-line {
+        fill: none;
+        stroke: #009fe3;
+        stroke-width: 3;
+        stroke-linecap: square;
+        stroke-linejoin: miter;
+        stroke-dasharray: 520px;
+        stroke-dashoffset: 520px;
+        opacity: 0;
+        filter: drop-shadow(0 0 8px rgba(0, 159, 227, 0.9));
+    }
+
+    #ox-landing-wrapper .ox-exp-node {
+        fill: #009fe3;
+        opacity: 0;
+        filter: drop-shadow(0 0 10px rgba(0, 159, 227, 1));
+        transition: opacity 0.2s ease;
+    }
+
+    /* Badge "Driver de 50mm" estilo ox-port-chip */
+    #ox-landing-wrapper .ox-exp-badge {
+        position: absolute;
+        top: 18.52%;
+        left: 33.33%;
+        transform: translate(-100%, -50%) scale(0.85);
+        opacity: 0;
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: rgba(5, 5, 7, 0.92);
+        border: 1px solid #009fe3;
+        color: #ffffff;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.9rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 159, 227, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        pointer-events: none;
+        will-change: transform, opacity;
+    }
+
+    #ox-landing-wrapper .ox-exp-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #009fe3;
+        display: inline-block;
+        box-shadow: 0 0 8px #009fe3;
+    }
+
+    /* Indicador sutil de scroll */
+    #ox-landing-wrapper .ox-exp-hint {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: #8da2b5;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-top: 0.5rem;
+        margin-bottom: 3.5rem;
+        opacity: 0.8;
+    }
+
+    #ox-landing-wrapper .ox-exp-hint-bar {
+        width: 140px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.12);
+        overflow: hidden;
+    }
+
+    #ox-landing-wrapper .ox-exp-hint-fill {
+        width: 0%;
+        height: 100%;
+        background: #009fe3;
+        box-shadow: 0 0 8px rgba(0, 159, 227, 0.8);
+    }
+
+    @media (max-width: 768px) {
+        #ox-landing-wrapper .ox-exploded-section {
+            height: 130vh;
+        }
+        #ox-landing-wrapper .ox-exploded-sticky {
+            min-height: 500px;
+            padding: 1.5rem 1rem 1rem;
+        }
+        #ox-landing-wrapper .ox-exploded-stage {
+            height: 320px;
+        }
+        #ox-landing-wrapper .ox-exp-badge {
+            font-size: 0.72rem;
+            padding: 0.35rem 0.6rem;
+            top: 18.52%;
+            left: 33.33%;
+        }
+        #ox-landing-wrapper .ox-exp-hint {
+            margin-bottom: 2rem;
+        }
+    }
+
+    .ox-rgb-video-wrap {
+        width: min(1440px, 100%);
+        max-width: 1440px;
+        margin-inline: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+    }
+
+    .ox-rgb-video-frame {
+        position: relative;
+        width: min(1280px, calc(100vw - 4rem));
+        max-width: 100%;
+        margin-inline: auto !important;
+        aspect-ratio: 21 / 9;
+        background: #000;
+        border: 1px solid rgba(0, 159, 227, 0.2);
+        overflow: hidden;
+    }
+
+    .ox-rgb-video-frame iframe,
+    .ox-rgb-video-frame video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+    }
+
+    /* --- CABEÇALHO PADRÃO BIPARTIDO (HUD) --- */
+    #ox-landing-wrapper .ox-fan-top {
+        display: grid;
+        grid-template-columns: minmax(320px, 1fr) 1px minmax(360px, 1.2fr);
+        align-items: center;
+        gap: 1.4rem;
+        width: min(1440px, 100%);
+        padding-left: 2rem;
+        padding-right: 2rem;
+        box-sizing: border-box;
+        margin: 0 auto 1.2rem;
+    }
+
+    #ox-landing-wrapper .ox-fan-top-left {
+        text-align: left;
+    }
+
+    #ox-landing-wrapper .ox-fan-top-left .ox-tech-text {
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+
+    #ox-landing-wrapper .ox-fan-top-left h2 {
+        margin: 0;
+    }
+
+    #ox-landing-wrapper .ox-fan-divider {
+        position: relative;
+        width: 1px;
+        height: 92px;
+        background: rgba(0, 159, 227, 0.34);
+    }
+
+    #ox-landing-wrapper .ox-fan-divider::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -2px;
+        width: 5px;
+        height: 5px;
+        transform: translateX(-50%);
+        background: #009fe3;
+    }
+
+    #ox-landing-wrapper .ox-fan-top-right p {
+        margin: 0;
+        max-width: 650px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #888899;
+        text-align: left;
+    }
+
+    #ox-landing-wrapper .ox-fan-top-right {
+        justify-self: end;
+    }
+
+    @keyframes ox-stars-drift {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-70px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* --- NOTAS LEGAIS --- */
+    #ox-landing-wrapper .ox-note-ref {
+        font-size: 0.42em;
+        line-height: 0;
+        vertical-align: super;
+        margin-left: 0.18rem;
+        color: #89d4f6;
+        font-family: 'Space Mono', monospace;
+    }
+
+    #ox-landing-wrapper .ox-legal-notes {
+        background: #020203;
+        border-top: 1px solid rgba(0, 159, 227, 0.2);
+        padding: 2.6rem 0 3rem 0;
+    }
+
+    #ox-landing-wrapper .ox-legal-wrap {
+        width: min(1440px, 100%);
+        box-sizing: border-box;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin: 0 auto;
+    }
+
+    #ox-landing-wrapper .ox-legal-title {
+        color: #dce8f0;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    #ox-landing-wrapper .ox-legal-desktop {
+        display: block;
+    }
+
+    #ox-landing-wrapper .ox-legal-mobile {
+        display: none;
+    }
+
+    #ox-landing-wrapper .ox-legal-accordion summary {
+        list-style: none;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    #ox-landing-wrapper .ox-legal-accordion summary::-webkit-details-marker {
+        display: none;
+    }
+
+    #ox-landing-wrapper .ox-legal-accordion .ox-legal-list {
+        display: grid;
+    }
+
+    #ox-landing-wrapper .ox-legal-list {
+        list-style: none;
+        display: grid;
+        gap: 0.42rem;
+    }
+
+    #ox-landing-wrapper .ox-legal-list li {
+        color: #7f8d99;
+        font-size: 0.78rem;
+        line-height: 1.55;
+    }
+
+    #ox-landing-wrapper .ox-legal-list strong {
+        color: #a9bbca;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        margin-right: 0.3rem;
+    }
+
+    @media (max-width: 900px) {
+        .ox-rgb-video-wrap {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+    
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 900px) {
+        #ox-landing-wrapper .ox-section-lamina {
+            grid-template-columns: 1fr;
+            min-height: auto;
+            max-height: none;
+            height: auto;
+        }
+        #ox-landing-wrapper .ox-lamina-visual {
+            height: 300px;
+            max-height: none;
+            order: -1;
+            min-height: auto;
+        }
+        
+        #ox-landing-wrapper .ox-pos-left,
+        #ox-landing-wrapper .ox-pos-right,
+        #ox-landing-wrapper .ox-hero-content {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        #ox-landing-wrapper .ox-product-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            justify-content: flex-start;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            grid-template-columns: none;
+        }
+        #ox-landing-wrapper .ox-product-grid::-webkit-scrollbar { 
+            display: none; 
+        }
+        
+        #ox-landing-wrapper .ox-product-card {
+            min-width: 280px;
+            width: 280px;
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+        }
+
+        #ox-landing-wrapper .ox-features-header {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        #ox-landing-wrapper .ox-fan-top {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin: 0 auto 0.8rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        #ox-landing-wrapper .ox-fan-divider {
+            position: relative;
+            width: 100%;
+            height: 1px;
+        }
+
+        #ox-landing-wrapper .ox-fan-divider::after {
+            left: auto;
+            right: 0;
+            bottom: -2px;
+            transform: none;
+        }
+
+        #ox-landing-wrapper .ox-fan-top-left,
+        #ox-landing-wrapper .ox-fan-top-right {
+            text-align: left;
+        }
+
+        #ox-landing-wrapper .ox-fan-top-right {
+            justify-self: stretch;
+            width: 100%;
+            min-width: 0;
+        }
+        
+        #ox-landing-wrapper .ox-hero-bg {
+            width: 100%;
+            opacity: 0.3;
+        }
+        #ox-landing-wrapper h1 { font-size: 3.5rem; }
+        
+        #ox-landing-wrapper .ox-features-grid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #ox-landing-wrapper .ox-card-content {
+            transform: translateY(0);
+        }
+
+        #ox-landing-wrapper .ox-card-desc,
+        #ox-landing-wrapper .ox-card-tech-id {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #ox-landing-wrapper .ox-perf-row {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            padding: 0.65rem 0;
+        }
+
+        #ox-landing-wrapper .ox-performance-chart {
+            --chart-pad-x: 0px;
+            --plot-inset-left: 2px;
+            --plot-inset-right: 10px;
+            --label-col: 0px;
+            --perf-gap: 0px;
+            --bar-left-offset: 0px;
+            --bar-right-offset: 0px;
+            padding-bottom: 1.45rem;
+        }
+
+        #ox-landing-wrapper .ox-performance-chart::before {
+            top: 0;
+            bottom: 1.45rem;
+            left: var(--plot-inset-left);
+            right: var(--plot-inset-right);
+        }
+
+        #ox-landing-wrapper .ox-perf-name {
+            font-size: 1.2rem;
+        }
+
+        #ox-landing-wrapper .ox-performance-axis {
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        #ox-landing-wrapper .ox-performance-visual {
+            min-height: 320px;
+        }
+
+        #ox-landing-wrapper .ox-legal-wrap {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        #ox-landing-wrapper .ox-legal-accordion summary {
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+            margin-bottom: 0;
+            padding-right: 1.6rem;
+        }
+
+        #ox-landing-wrapper .ox-legal-accordion summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 0.05rem;
+            color: #89d4f6;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        #ox-landing-wrapper .ox-legal-accordion[open] summary {
+            margin-bottom: 1rem;
+        }
+
+        #ox-landing-wrapper .ox-legal-accordion[open] summary::after {
+            content: '-';
+        }
+
+        #ox-landing-wrapper .ox-legal-accordion:not([open]) .ox-legal-list {
+            display: none;
+        }
+
+        #ox-landing-wrapper .ox-legal-desktop {
+            display: none;
+        }
+
+        #ox-landing-wrapper .ox-legal-mobile {
+            display: block;
+        }
+        
+        #ox-landing-wrapper .ox-card-content {
+            transform: translateY(0);
+        }
+        #ox-landing-wrapper .ox-card-desc,
+        #ox-landing-wrapper .ox-card-tech-id {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #ox-landing-wrapper .ox-hs-label {
+            left: 50%;
+            top: 110%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+        }
+        #ox-landing-wrapper .ox-hs-trigger:hover .ox-hs-label {
+            transform: translateX(-50%);
+        }
+    }
+
+        /* ==========================================================================
+       PRIMEIRA LÂMINA (L1): VÍDEO FONE NEPTUNE (TRANSIÇÃO EXPANSIVA 21:9)
+       ========================================================================== */
+    #ox-landing-wrapper .ox-l1-section {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        background: radial-gradient(ellipse at center, #0c1726 0%, #070b12 55%, #050507 100%);
+        padding: 3rem 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 159, 227, 0.2);
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: padding 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                    background 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #ox-landing-wrapper .ox-l1-section::before {
+        content: '';
+        position: absolute;
+        inset: -15% -10%;
+        z-index: 0;
+        pointer-events: none;
+        background: 
+            radial-gradient(circle at 50% 50%, rgba(0, 159, 227, 0.18) 0%, rgba(0, 159, 227, 0.06) 42%, transparent 70%),
+            radial-gradient(circle at 25% 35%, rgba(78, 206, 255, 0.09) 0%, transparent 45%),
+            radial-gradient(circle at 75% 65%, rgba(0, 159, 227, 0.09) 0%, transparent 45%);
+        opacity: 0.75;
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #ox-landing-wrapper .ox-l1-section.is-expanded::before {
+        opacity: 0;
+    }
+
+    /* Efeito de Estrelas Cósmicas nas Lâminas de Break (Vídeo Teaser) */
+    #ox-landing-wrapper .ox-l1-stars {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #ox-landing-wrapper .ox-l1-section.is-expanded .ox-l1-stars {
+        opacity: 0;
+    }
+
+    #ox-landing-wrapper .ox-l1-stars .ox-star-layer {
+        position: absolute;
+        inset: -80px 0 -80px 0;
+        animation: ox-stars-drift var(--star-speed) ease-in-out infinite;
+        background-repeat: repeat;
+    }
+
+    #ox-landing-wrapper .ox-l1-stars .ox-star-layer-1 {
+        --star-speed: 12s;
+        opacity: 0.22;
+        filter: brightness(0.9);
+        background-size: 240px 240px;
+        background-image:
+            radial-gradient(1px 1px at 24px 38px, rgba(255, 255, 255, 0.95) 99%, transparent 100%),
+            radial-gradient(1px 1px at 132px 186px, rgba(255, 255, 255, 0.85) 99%, transparent 100%),
+            radial-gradient(1.5px 1.5px at 210px 76px, rgba(0, 159, 227, 0.95) 99%, transparent 100%),
+            radial-gradient(1px 1px at 68px 122px, rgba(255, 255, 255, 0.8) 99%, transparent 100%),
+            radial-gradient(1px 1px at 176px 148px, rgba(255, 255, 255, 0.75) 99%, transparent 100%),
+            radial-gradient(1px 1px at 98px 208px, rgba(255, 255, 255, 0.9) 99%, transparent 100%),
+            radial-gradient(1px 1px at 30px 198px, rgba(255, 255, 255, 0.75) 99%, transparent 100%),
+            radial-gradient(1.5px 1.5px at 220px 220px, rgba(78, 206, 255, 0.95) 99%, transparent 100%);
+    }
+
+    #ox-landing-wrapper .ox-l1-stars .ox-star-layer-2 {
+        --star-speed: 16s;
+        opacity: 0.16;
+        filter: brightness(0.85);
+        background-size: 360px 360px;
+        background-image:
+            radial-gradient(1px 1px at 48px 52px, rgba(255, 255, 255, 0.85) 99%, transparent 100%),
+            radial-gradient(1.5px 1.5px at 198px 266px, rgba(0, 159, 227, 0.9) 99%, transparent 100%),
+            radial-gradient(1px 1px at 302px 112px, rgba(255, 255, 255, 0.9) 99%, transparent 100%),
+            radial-gradient(1px 1px at 126px 322px, rgba(255, 255, 255, 0.75) 99%, transparent 100%),
+            radial-gradient(1px 1px at 286px 214px, rgba(255, 255, 255, 0.8) 99%, transparent 100%);
+    }
+
+    #ox-landing-wrapper .ox-l1-stars .ox-star-layer-3 {
+        --star-speed: 21s;
+        opacity: 0.12;
+        filter: brightness(0.8);
+        background-size: 520px 520px;
+        background-image:
+            radial-gradient(1px 1px at 94px 90px, rgba(255, 255, 255, 0.85) 99%, transparent 100%),
+            radial-gradient(1px 1px at 362px 304px, rgba(255, 255, 255, 0.7) 99%, transparent 100%),
+            radial-gradient(1.5px 1.5px at 448px 170px, rgba(78, 206, 255, 0.9) 99%, transparent 100%);
+    }
+
+    #ox-landing-wrapper .ox-l1-section.is-expanded {
+        padding: 0;
+    }
+
+    #ox-landing-wrapper .ox-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+    #ox-landing-wrapper .ox-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+
+    /* Antes do Play: Formato menor idêntico ao modelo original (width: min(1280px, calc(100vw - 4rem))) */
+    #ox-landing-wrapper .ox-l1-video-container {
+        position: relative;
+        z-index: 1;
+        width: min(1280px, calc(100vw - 4rem));
+        max-width: 1280px;
+        margin-inline: auto !important;
+        aspect-ratio: 21 / 9;
+        background: #000000;
+        border: 1px solid rgba(0, 159, 227, 0.35);
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 159, 227, 0.15);
+        box-sizing: border-box;
+        transition: width 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                    max-width 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* No Play: Redimensiona suavemente com Bézier Curve para 100% de largura total */
+    #ox-landing-wrapper .ox-l1-section.is-expanded .ox-l1-video-container {
+        width: 100%;
+        max-width: 100%;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        box-shadow: none;
+    }
+
+    #ox-landing-wrapper .ox-l1-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    #ox-landing-wrapper .ox-l1-vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at center, transparent 70%, rgba(5, 5, 7, 0.45) 100%);
+        z-index: 2;
+    }
+
+    /* Botão Central de Play: Quadrado estilo ox-port-chip com transições suaves */
+    #ox-landing-wrapper .ox-l1-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        width: 62px;
+        height: 62px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid rgba(0, 159, 227, 0.5);
+        background: rgba(5, 5, 7, 0.82);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #009fe3;
+        border-radius: 0;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 0 20px rgba(0, 159, 227, 0.25);
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    background 0.25s ease, 
+                    border-color 0.25s ease, 
+                    box-shadow 0.25s ease,
+                    visibility 0.4s;
+    }
+
+    #ox-landing-wrapper .ox-l1-play-btn.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+
+    #ox-landing-wrapper .ox-l1-play-btn:hover {
+        background: rgba(0, 159, 227, 0.18);
+        border-color: #009fe3;
+        color: #ffffff;
+        transform: translate(-50%, -50%) scale(1.08);
+        box-shadow: 0 0 30px rgba(0, 159, 227, 0.55);
+    }
+
+    #ox-landing-wrapper .ox-l1-play-btn svg {
+        width: 26px;
+        height: 26px;
+        fill: currentColor;
+        transition: fill 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Controles no cantinho estilo ox-port-chip com posicionamento sticky inteligente */
+    #ox-landing-wrapper .ox-l1-corner-controls {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(5, 5, 7, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 159, 227, 0.45);
+        padding: 0.35rem 0.6rem;
+        border-radius: 0;
+        z-index: 100;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 159, 227, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                    visibility 0.35s;
+    }
+
+    #ox-landing-wrapper .ox-l1-corner-controls.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    #ox-landing-wrapper .ox-l1-corner-controls.is-offscreen {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    #ox-landing-wrapper .ox-corner-btn {
+        background: transparent;
+        border: none;
+        color: #009fe3;
+        width: 34px;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 0;
+        transition: all 0.2s ease;
+        padding: 0;
+    }
+
+    #ox-landing-wrapper .ox-corner-btn:hover {
+        background: rgba(0, 159, 227, 0.15);
+        color: #ffffff;
+    }
+
+    #ox-landing-wrapper .ox-corner-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+    }
+
+    #ox-landing-wrapper .ox-corner-divider {
+        width: 1px;
+        height: 20px;
+        background: rgba(0, 159, 227, 0.35);
+    }
+
+    /* Alternância de ícones do Play/Pause */
+    #ox-landing-wrapper #ox-btn-playpause .ox-icon-play,
+    #ox-landing-wrapper .ox-btn-playpause .ox-icon-play { display: none; }
+    #ox-landing-wrapper #ox-btn-playpause .ox-icon-pause,
+    #ox-landing-wrapper .ox-btn-playpause .ox-icon-pause { display: block; }
+    #ox-landing-wrapper #ox-btn-playpause:not(.is-playing) .ox-icon-play,
+    #ox-landing-wrapper .ox-btn-playpause:not(.is-playing) .ox-icon-play { display: block; }
+    #ox-landing-wrapper #ox-btn-playpause:not(.is-playing) .ox-icon-pause,
+    #ox-landing-wrapper .ox-btn-playpause:not(.is-playing) .ox-icon-pause { display: none; }
+
+    /* Alternância de ícones do Áudio */
+    #ox-landing-wrapper #ox-btn-audio .ox-icon-vol-on,
+    #ox-landing-wrapper .ox-btn-audio .ox-icon-vol-on { display: block; }
+    #ox-landing-wrapper #ox-btn-audio .ox-icon-vol-off,
+    #ox-landing-wrapper .ox-btn-audio .ox-icon-vol-off { display: none; }
+    #ox-landing-wrapper #ox-btn-audio:not(.is-unmuted) .ox-icon-vol-on,
+    #ox-landing-wrapper .ox-btn-audio:not(.is-unmuted) .ox-icon-vol-on { display: none; }
+    #ox-landing-wrapper #ox-btn-audio:not(.is-unmuted) .ox-icon-vol-off,
+    #ox-landing-wrapper .ox-btn-audio:not(.is-unmuted) .ox-icon-vol-off { display: block; }
+
+    /* Alternância de ícones de Tela Cheia */
+    #ox-landing-wrapper #ox-btn-fullscreen .ox-icon-fs-enter,
+    #ox-landing-wrapper .ox-btn-fullscreen .ox-icon-fs-enter { display: block; }
+    #ox-landing-wrapper #ox-btn-fullscreen .ox-icon-fs-exit,
+    #ox-landing-wrapper .ox-btn-fullscreen .ox-icon-fs-exit { display: none; }
+    #ox-landing-wrapper #ox-btn-fullscreen.is-fs .ox-icon-fs-enter,
+    #ox-landing-wrapper .ox-btn-fullscreen.is-fs .ox-icon-fs-enter { display: none; }
+    #ox-landing-wrapper #ox-btn-fullscreen.is-fs .ox-icon-fs-exit,
+    #ox-landing-wrapper .ox-btn-fullscreen.is-fs .ox-icon-fs-exit { display: block; }
+
+    #ox-landing-wrapper .ox-l1-section:fullscreen,
+    #ox-landing-wrapper .ox-l1-section:-webkit-full-screen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000000;
+    }
+    #ox-landing-wrapper .ox-l1-section:fullscreen .ox-l1-video-container,
+    #ox-landing-wrapper .ox-l1-section:-webkit-full-screen .ox-l1-video-container {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    /* Slider / Barra de Progresso Discreta Ultra Suave com sticky inteligente */
+    #ox-landing-wrapper .ox-l1-progress-wrap {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.15);
+        cursor: pointer;
+        z-index: 95;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                    background 0.25s ease,
+                    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    visibility 0.35s;
+    }
+    #ox-landing-wrapper .ox-l1-section.is-expanded .ox-l1-progress-wrap {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    #ox-landing-wrapper .ox-l1-progress-wrap.is-offscreen {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    #ox-landing-wrapper .ox-l1-progress-wrap:hover {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.25);
+    }
+    #ox-landing-wrapper .ox-l1-progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #009fe3;
+        box-shadow: 0 0 10px rgba(0, 159, 227, 0.9);
+        position: relative;
+        pointer-events: none;
+        will-change: width;
+    }
+
+    @media (max-width: 768px) {
+        #ox-landing-wrapper .ox-l1-section {
+            padding: 1.5rem 0;
+        }
+        #ox-landing-wrapper .ox-l1-section.is-expanded {
+            padding: 0;
+        }
+        #ox-landing-wrapper .ox-l1-video-container {
+            width: calc(100vw - 2rem);
+            aspect-ratio: 21 / 9;
+        }
+        #ox-landing-wrapper .ox-l1-section.is-expanded .ox-l1-video-container {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+        }
+        #ox-landing-wrapper .ox-l1-play-btn {
+            width: 48px;
+            height: 48px;
+        }
+        #ox-landing-wrapper .ox-l1-play-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        #ox-landing-wrapper .ox-l1-corner-controls {
+            bottom: 0.8rem;
+            right: 0.8rem;
+            padding: 0.25rem 0.4rem;
+        }
+        #ox-landing-wrapper .ox-corner-btn {
+            width: 30px;
+            height: 30px;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- WRAPPER PRINCIPAL -->
+<div id="ox-landing-wrapper">
+<!-- HERO SECTION -->
+    <header>
+        <div class="ox-hero">
+            <div class="ox-hero-bg"></div>
+            
+            <div class="ox-hero-content">
+                <div class="ox-hero-status">
+                    <span>COMMUNICATION: ONLINE</span>
+                    <span>MODEL: NEPTUNE</span>
+                    <span>ADVICE_LIGHTS: BLUE</span>
+                </div>
+                
+                <!-- LOGO ANIMADO SUBTITUÍDO -->
+                <div class="logo-container">
+                    <!-- VETOR 1 (Estado Normal) -->
+                    <svg class="vector vector-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 299.2 196.4">
+                        <path class="st1" d="M14,46.3c3.2-7.4,7.5-13.8,13-19.3,5.5-5.5,12-9.8,19.4-13,7.4-3.2,15.3-4.8,23.7-4.8s16.4,1.6,23.8,4.8c7.4,3.2,13.8,7.5,19.3,13,5.5,5.5,9.8,11.9,13,19.3,2.9,6.6,4.5,13.7,4.7,21.3l-60.9,57.1L9.2,67.6c.3-7.5,1.9-14.6,4.7-21.3M130.3,79.9c-.8,4.8-2.1,9.4-4,13.8-3.2,7.4-7.6,13.8-13,19.3-5.5,5.5-11.9,9.8-19.3,13-5.5,2.4-11.4,3.9-17.6,4.5h0s54-50.7,54-50.7ZM10.3,80.2l54,50.6-.3-.3c-6.1-.6-11.9-2.1-17.5-4.5-7.4-3.2-13.9-7.6-19.4-13-5.5-5.5-9.8-11.9-13-19.3-1.9-4.4-3.3-9-3.7-13.5M97.5,134.5c8.5-3.7,15.9-8.7,22.2-15,6.3-6.3,11.3-13.7,15-22.2,3.7-8.5,5.5-17.5,5.5-27.1s-1.8-18.9-5.5-27.3c-3.7-8.5-8.7-15.9-15-22.2-6.3-6.3-13.7-11.3-22.2-15-8.5-3.7-17.6-5.5-27.3-5.5s-18.7,1.8-27.2,5.5c-8.6,3.7-16,8.7-22.3,15-6.3,6.3-11.3,13.7-15,22.2C1.8,51.3,0,60.4,0,70.1s1.8,18.6,5.5,27.1c3.7,8.5,8.7,15.9,15,22.2,6.3,6.3,13.8,11.3,22.3,15,4.1,1.7,8.2,3.1,12.5,4L.3,190.2l5.8,6.2,60.2-56.5c1.3,0,2.5,0,3.8,0s2.5,0,3.8,0l60.2,56.5,5.8-6.2-55.1-51.7c4.4-.9,8.6-2.3,12.6-4"/>
+                        <!-- O -->
+                        <path class="st0" d="M204.4,129.1c3,0,5.7-.6,8.3-1.7,2.6-1.1,4.8-2.7,6.6-4.6,1.8-2,3.3-4.3,4.3-7,1-2.7,1.6-5.6,1.6-8.6s-.5-5.9-1.6-8.5c-1-2.6-2.5-4.9-4.3-6.8-1.8-1.9-4-3.4-6.6-4.5-2.5-1.1-5.3-1.6-8.3-1.6s-5.8.6-8.4,1.6c-2.6,1.1-4.8,2.6-6.6,4.5-1.8,1.9-3.3,4.2-4.3,6.8-1,2.6-1.6,5.4-1.6,8.5s.5,6,1.6,8.6c1,2.7,2.5,5,4.4,7,1.9,2,4.1,3.5,6.6,4.6,2.5,1.1,5.3,1.7,8.3,1.7M204.4,139.5c-4.8,0-9.1-.8-13.2-2.5-4-1.6-7.5-3.9-10.4-6.7-2.9-2.9-5.3-6.3-6.9-10.2-1.7-4-2.5-8.2-2.5-12.9s.8-8.8,2.5-12.7c1.6-3.9,3.9-7.3,6.9-10.1,2.9-2.8,6.4-5,10.5-6.6,4-1.6,8.4-2.4,13.2-2.4s9.1.8,13.1,2.4c4,1.6,7.5,3.8,10.4,6.6,2.9,2.8,5.2,6.2,6.9,10.1,1.6,3.9,2.5,8.1,2.5,12.7s-.8,8.9-2.5,12.9c-1.7,4-4,7.4-6.9,10.2-2.9,2.9-6.4,5.1-10.4,6.7-4,1.6-8.4,2.5-13.1,2.5"/>
+                        <!-- X -->
+                        <polygon class="st0" points="284.2 75.4 268.9 96.7 268.1 96.7 253 75.4 239.1 75.4 261.3 106.6 237.7 139.5 251.4 139.5 267.9 116.1 268.6 116.1 285.4 139.5 299.2 139.5 275.5 106.4 297.7 75.4 284.2 75.4"/>
+                    </svg>
+
+                    <!-- VETOR 2 (Estado Glow/Ligado) -->
+                    <svg class="vector vector-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 299.2 196.4">
+                        <path class="st1" d="M97.5,134.5c8.5-3.7,15.9-8.7,22.2-15,6.3-6.3,11.3-13.7,15-22.2,3.7-8.5,5.5-17.5,5.5-27.1s-1.8-18.8-5.5-27.3-8.7-15.9-15-22.2c-6.3-6.3-13.7-11.3-22.2-15C89,1.8,79.9,0,70.1,0s-18.7,1.8-27.2,5.5c-8.6,3.7-16,8.7-22.3,15-6.3,6.3-11.3,13.7-15,22.2C1.8,51.3,0,60.4,0,70.1s1.8,18.7,5.5,27.1c3.7,8.5,8.7,15.9,15,22.2,6.3,6.3,13.8,11.3,22.3,15,4.1,1.8,8.2,3.1,12.5,4L.3,190.2l5.8,6.2,60.2-56.5c1.3,0,2.5,0,3.8,0s2.6,0,3.8,0l60.2,56.5,5.8-6.2-55.1-51.7c4.3-.9,8.6-2.3,12.6-4ZM46.4,126.1c-7.4-3.2-13.9-7.5-19.4-13-5.5-5.5-9.8-11.9-13-19.3-1.9-4.4-3.3-9-3.7-13.5l53.7,50.3c-6.1-.6-11.9-2.1-17.5-4.5ZM70.1,124.7L9.2,67.6c.3-7.5,1.9-14.6,4.8-21.2,3.2-7.4,7.5-13.8,13-19.3,5.5-5.5,12-9.8,19.4-13,7.4-3.2,15.3-4.8,23.7-4.8s16.4,1.6,23.8,4.8c7.4,3.2,13.8,7.5,19.3,13s9.8,11.9,13,19.3c2.9,6.6,4.5,13.7,4.8,21.2l-60.9,57.1ZM76.3,130.6l54-50.6c-.8,4.8-2.1,9.4-4,13.8-3.2,7.4-7.5,13.8-13,19.3s-11.9,9.8-19.3,13c-5.5,2.4-11.4,3.9-17.6,4.5h0Z"/>
+                        
+                        <!-- GLOW aplicado apenas aqui -->
+                        <path class="st0 glow-part" d="M130.3,79.9c-.8,4.8-2.1,9.4-4,13.8-3.2,7.4-7.5,13.8-13,19.3s-11.9,9.8-19.3,13c-5.5,2.4-11.4,3.9-17.6,4.5h0s54-50.6,54-50.6Z"/>
+                        <path class="st0 glow-part" d="M63.9,130.6c-6.1-.6-11.9-2.1-17.5-4.5-7.4-3.2-13.9-7.5-19.4-13-5.5-5.5-9.8-11.9-13-19.3-1.9-4.4-3.3-9-3.7-13.5l53.7,50.3Z"/>
+                        
+                        <!-- OX sem glow -->
+                        <path class="st0" d="M204.4,129.1c3,0,5.7-.6,8.3-1.7,2.6-1.1,4.8-2.7,6.6-4.6,1.8-2,3.3-4.3,4.3-7,1-2.7,1.6-5.6,1.6-8.6s-.5-5.9-1.6-8.5c-1-2.6-2.5-4.9-4.3-6.8-1.8-1.9-4-3.4-6.6-4.5-2.5-1.1-5.3-1.6-8.3-1.6s-5.8.6-8.4,1.6c-2.6,1.1-4.8,2.6-6.6,4.5-1.8,1.9-3.3,4.2-4.3,6.8-1,2.6-1.6,5.4-1.6,8.5s.5,6,1.6,8.6c1,2.7,2.5,5,4.4,7,1.9,2,4.1,3.5,6.6,4.6,2.5,1.1,5.3,1.7,8.3,1.7M204.4,139.5c-4.8,0-9.1-.8-13.2-2.5-4-1.6-7.5-3.9-10.4-6.7-2.9-2.9-5.3-6.3-6.9-10.2-1.7-4-2.5-8.2-2.5-12.9s.8-8.8,2.5-12.7c1.6-3.9,3.9-7.3,6.9-10.1,2.9-2.8,6.4-5,10.5-6.6,4-1.6,8.4-2.4,13.2-2.4s9.1.8,13.1,2.4c4,1.6,7.5,3.8,10.4,6.6,2.9,2.8,5.2,6.2,6.9,10.1,1.6,3.9,2.5,8.1,2.5,12.7s-.8,8.9-2.5,12.9c-1.7,4-4,7.4-6.9,10.2-2.9,2.9-6.4,5.1-10.4,6.7-4,1.6-8.4,2.5-13.1,2.5"/>
+                        <polygon class="st0" points="284.2 75.4 268.9 96.7 268.1 96.7 253 75.4 239.1 75.4 261.3 106.6 237.7 139.5 251.4 139.5 267.9 116.1 268.6 116.1 285.4 139.5 299.2 139.5 275.5 106.4 297.7 75.4 284.2 75.4"/>
+                    </svg>
+                </div>
+
+                <h1>HEADSET<br><span style="color: #009fe3">NEPTUNE</span></h1>
+                
+                <p style="margin-top: 2rem; color: white;">
+                Qualidade de áudio com clareza em cada som. <br>
+Para quem busca mais imersão, precisão e conforto no jogo.
+</p>
+</div>
+</div>
+</header>
+
+<!-- MARQUEE TECNICO -->
+    <section>
+        <div class="ox-scrolling-strip">
+            <div class="ox-strip-content">
+                AMD RADEON RX 580 // 8GB GDDR5 // INTERFACE 256-BIT // DESEMPENHO FULL HD // FIDELITYFX SUPER RESOLUTION // RADEON ANTI-LAG // SUPORTE A MULTIPLOS MONITORES // AMD RADEON RX 580 // 8GB GDDR5 // INTERFACE 256-BIT // DESEMPENHO FULL HD // FIDELITYFX SUPER RESOLUTION // RADEON ANTI-LAG // SUPORTE A MULTIPLOS MONITORES // AMD RADEON RX 580 // 8GB GDDR5 // INTERFACE 256-BIT // DESEMPENHO FULL HD // FIDELITYFX SUPER RESOLUTION // RADEON ANTI-LAG // SUPORTE A MULTIPLOS MONITORES // AMD RADEON RX 580 // 8GB GDDR5 // INTERFACE 256-BIT // DESEMPENHO FULL HD // FIDELITYFX SUPER RESOLUTION // RADEON ANTI-LAG // SUPORTE A MULTIPLOS MONITORES //
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIMEIRA LÂMINA DEPOIS DO HERO: VÍDEO TEASER L1 (FONE NEPTUNE) -->
+    <section class="ox-l1-section" id="ox-l1-section">
+        <div class="ox-corner-decor ox-tl"></div>
+        <div class="ox-corner-decor ox-tr"></div>
+        <div class="ox-corner-decor ox-bl"></div>
+        <div class="ox-corner-decor ox-br"></div>
+
+        <div class="ox-l1-stars" aria-hidden="true">
+            <div class="ox-star-layer ox-star-layer-1"></div>
+            <div class="ox-star-layer ox-star-layer-2"></div>
+            <div class="ox-star-layer ox-star-layer-3"></div>
+        </div>
+
+        <div class="ox-l1-video-container">
+            <video 
+                id="ox-l1-video" 
+                class="ox-l1-video" 
+                src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/L1.mp4" 
+                autoplay 
+                muted 
+                playsinline 
+                preload="auto"
+                aria-label="Vídeo de Apresentação Fone Neptune">
+            </video>
+
+            <div class="ox-l1-vignette" aria-hidden="true"></div>
+
+            <!-- Botão Central de Play: Ícone no container quadrado estilo ox-port-chip -->
+            <button type="button" class="ox-l1-play-btn" id="ox-l1-play-btn" aria-label="Assistir com som" title="Play com som">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <polygon points="6,4 19,12 6,20"></polygon>
+                </svg>
+            </button>
+
+            <!-- Controles no cantinho (Play/Pause, Stop, Áudio e Tela Cheia) -->
+            <div class="ox-l1-corner-controls" id="ox-l1-corner-controls" aria-label="Controles do vídeo">
+                <button type="button" class="ox-corner-btn ox-btn-playpause is-playing" id="ox-btn-playpause" aria-label="Pausar ou reproduzir" title="Play / Pause">
+                    <svg class="ox-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="6,4 19,12 6,20"></polygon>
+                    </svg>
+                    <svg class="ox-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+
+                <button type="button" class="ox-corner-btn ox-btn-stop" id="ox-btn-stop" aria-label="Parar vídeo" title="Stop">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="6" width="12" height="12"></rect>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <button type="button" class="ox-corner-btn ox-btn-audio is-unmuted" id="ox-btn-audio" aria-label="Ativar ou desativar som" title="Som">
+                    <svg class="ox-icon-vol-on" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <svg class="ox-icon-vol-off" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <!-- Botão Tela Cheia -->
+                <button type="button" class="ox-corner-btn ox-btn-fullscreen" id="ox-btn-fullscreen" aria-label="Alternar tela cheia" title="Tela cheia">
+                    <svg class="ox-icon-fs-enter" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    <svg class="ox-icon-fs-exit" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Slider / Barra de Progresso Discreta -->
+            <div class="ox-l1-progress-wrap" id="ox-l1-progress" title="Progresso do vídeo">
+                <div class="ox-l1-progress-bar" id="ox-l1-prog-bar"></div>
+            </div>
+
+            <!-- Execução JavaScript via onerror (compatível com VTEX sem tag script) -->
+            <img src="//:0" style="display:none;" onerror="(function i(){var v=document.getElementById('ox-l1-video'),p=document.getElementById('ox-l1-play-btn'),c=document.getElementById('ox-l1-corner-controls'),pp=document.getElementById('ox-btn-playpause'),st=document.getElementById('ox-btn-stop'),a=document.getElementById('ox-btn-audio'),fs=document.getElementById('ox-btn-fullscreen'),sec=document.getElementById('ox-l1-section'),pw=document.getElementById('ox-l1-progress'),pb=document.getElementById('ox-l1-prog-bar');if(!v||!p)return setTimeout(i,40);function upPos(){if(!c)return;var t=sec||v,r=t.getBoundingClientRect(),winH=window.innerHeight||document.documentElement.clientHeight,mb=(window.innerWidth<=768)?13:24;if(r.bottom<=40||r.top>=(winH-40)){c.classList.add('is-offscreen');if(pw)pw.classList.add('is-offscreen');}else{c.classList.remove('is-offscreen');if(pw)pw.classList.remove('is-offscreen');}var cb=Math.max(mb,(winH-r.bottom)+mb);c.style.bottom=cb+'px';if(pw){pw.style.bottom=Math.max(0,winH-r.bottom)+'px';}}function rst(){v.muted=true;v.currentTime=0;v.play();p.classList.remove('is-hidden');if(c)c.classList.remove('is-visible');if(sec)sec.classList.remove('is-expanded');if(pb)pb.style.width='0%';if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();upPos();}p.onclick=function(){var b2=document.getElementById('ox-b2-video'),st2=document.getElementById('ox-b2-btn-stop');if(b2&&!b2.muted){if(st2)st2.click();else{b2.muted=true;}}var b3=document.getElementById('ox-b3-video'),st3=document.getElementById('ox-b3-btn-stop');if(b3&&!b3.muted){if(st3)st3.click();else{b3.muted=true;}}v.currentTime=0;v.muted=false;v.volume=1;v.play();p.classList.add('is-hidden');if(c)c.classList.add('is-visible');if(sec)sec.classList.add('is-expanded');upPos();};v.onended=rst;if(st)st.onclick=function(e){e.stopPropagation();rst();};if(pp)pp.onclick=function(e){e.stopPropagation();v.paused?v.play():v.pause();};if(a)a.onclick=function(e){e.stopPropagation();v.muted=!v.muted;};if(fs)fs.onclick=function(e){e.stopPropagation();var t=sec||v;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(t.requestFullscreen)t.requestFullscreen();else if(t.webkitRequestFullscreen)t.webkitRequestFullscreen();else if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();}else{if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}};function ufs(){var is=!!(document.fullscreenElement||document.webkitFullscreenElement);if(fs)fs.classList.toggle('is-fs',is);upPos();}document.addEventListener('fullscreenchange',ufs);document.addEventListener('webkitfullscreenchange',ufs);v.onplay=function(){if(pp)pp.classList.add('is-playing');};v.onpause=function(){if(pp)pp.classList.remove('is-playing');};v.onvolumechange=function(){if(a)a.classList.toggle('is-unmuted',!v.muted);};function loop(){if(!v.paused&&pb&&v.duration){pb.style.width=((v.currentTime/v.duration)*100)+'%';}upPos();requestAnimationFrame(loop);}requestAnimationFrame(loop);window.addEventListener('scroll',upPos,{passive:true});window.addEventListener('resize',upPos,{passive:true});if(pw)pw.onclick=function(e){e.stopPropagation();var r=pw.getBoundingClientRect();if(v.duration){v.currentTime=Math.max(0,Math.min(v.duration,((e.clientX-r.left)/r.width)*v.duration));if(pb)pb.style.width=((v.currentTime/v.duration)*100)+'%';}};})()" alt="" />
+        </div>
+    </section>
+    
+    
+    <!-- ==========================================================================
+         LÂMINA 05: OUÇA ANTES DE VER (VISTA EXPLODIDA 50MM COM SCROLL)
+         ========================================================================== -->
+    <section class="ox-exploded-section" id="ox-exploded-section" aria-label="Lâmina Ouça Antes de Ver">
+        <div class="ox-exploded-sticky" id="ox-exploded-sticky">
+            <div class="ox-features-header ox-exploded-header">
+                <span class="ox-tech-text">01 // ÁUDIO ESPACIAL</span>
+                <h2>Ouça Antes de Ver<sup class="ox-note-ref">1</sup></h2>
+                <div class="ox-hud-line" style="max-width: 100px; margin: 1.5rem auto;"></div>
+                <p style="max-width: 900px; margin: 0 auto; color: #b8c6d1;">
+                    Em 1846, a matemática encontrou Netuno antes de qualquer telescópio. No jogo, o som do Headset Netpune faz o mesmo: o passo atrás da parede, a recarga no corredor, o time inimigo antes de aparecer na tela. Drivers de <span style="color:#009fe3;">50 mm</span>, de <span style="color:#009fe3;">20 Hz a 20 kHz</span>, graves com peso e agudos com precisão.
+                </p>
+            </div>
+
+            <!-- STAGE DA CONCHA COM ANIMAÇÃO FRAME A FRAME (CANVAS) -->
+            <div class="ox-exploded-stage" id="ox-exploded-stage">
+                <div class="ox-exp-canvas-wrap">
+                    <!-- Canvas que renderiza os 61 frames (1920x1080) -->
+                    <canvas id="ox-exp-canvas" class="ox-exp-canvas" width="1920" height="1080"></canvas>
+
+                    <!-- Linha HUD azul subindo e virando à esquerda -->
+                    <svg class="ox-exp-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                        <path id="ox-exp-line" class="ox-exp-line" d="M 1000 360 L 1000 200 L 640 200" />
+                        <circle id="ox-exp-node" class="ox-exp-node" cx="1000" cy="360" r="8" />
+                    </svg>
+
+                    <!-- Quadradinho na ponta dizendo "Driver de 50mm" -->
+                    <div class="ox-exp-badge" id="ox-exp-badge" aria-label="Driver de 50mm">
+                        <span class="ox-exp-badge-dot" aria-hidden="true"></span>
+                        <span>Driver de 50mm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicador sutil de scroll -->
+            <div class="ox-exp-hint" id="ox-exp-hint">
+                <span>Role para exibir os componentes</span>
+                <div class="ox-exp-hint-bar"><div class="ox-exp-hint-fill" id="ox-exp-fill"></div></div>
+            </div>
+
+            <!-- Execução JavaScript via onerror (compatível com VTEX sem tag script) -->
+            <img src="//:0" style="display:none;" onerror="(function initExp(){var s=document.getElementById('ox-exploded-section'),cv=document.getElementById('ox-exp-canvas'),ln=document.getElementById('ox-exp-line'),nd=document.getElementById('ox-exp-node'),b=document.getElementById('ox-exp-badge'),f=document.getElementById('ox-exp-fill');if(!s||!cv)return setTimeout(initExp,40);var ctx=cv.getContext('2d'),totFrames=61,frames=[],curP=0,lastDrawn=-1;var f0=new Image();f0.src='https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/frames/Comp%201_00000.webp';f0.onload=function(){frames[0]=f0;draw(0);};for(var i=0;i<totFrames;i++){(function(idx){var img=new Image(),pad=('00000'+idx).slice(-5);img.src='https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/frames/Comp%201_'+pad+'.webp';img.onload=function(){frames[idx]=img;var tIdx=Math.min(60,Math.max(0,Math.round(curP*60)));if(tIdx===idx)draw(idx);};})(i);}function draw(idx){var im=frames[idx];if(!im){for(var d=1;d<totFrames;d++){if(frames[idx-d]){im=frames[idx-d];break;}if(frames[idx+d]){im=frames[idx+d];break;}}}if(im&&im.complete&&im.naturalWidth){ctx.clearRect(0,0,1920,1080);ctx.drawImage(im,0,0,1920,1080);lastDrawn=idx;}}function upd(){var rect=s.getBoundingClientRect(),winH=window.innerHeight||document.documentElement.clientHeight,tot=rect.height-winH,sc=-rect.top,t=(tot>0)?Math.max(0,Math.min(1,sc/tot)):0;curP+=(t-curP)*0.22;if(Math.abs(t-curP)<0.0005)curP=t;if(rect.bottom<-100||rect.top>winH+100)return;var fIdx=Math.min(60,Math.max(0,Math.round(curP*60)));if(fIdx!==lastDrawn){draw(fIdx);}var p2=Math.max(0,Math.min(1,(curP-0.70)/0.30)),e2=1-Math.pow(1-p2,2);if(ln){ln.style.strokeDashoffset=(520*(1-e2))+'px';ln.style.opacity=(e2>0.02)?'1':'0';}if(nd)nd.style.opacity=(e2>0.05)?'1':'0';if(b){var bp=Math.max(0,Math.min(1,(e2-0.55)/0.45));b.style.opacity=bp;b.style.transform='translate(-100%,-50%) scale('+(0.85+0.15*bp)+')';}if(f)f.style.width=(curP*100)+'%';}function loop(){upd();requestAnimationFrame(loop);}requestAnimationFrame(loop);window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd();})()" alt="" />
+        </div>
+    </section>
+    
+    
+        <!-- LÂMINA DO MICROFONE (HOUSTON) -->
+    <section>
+        <div class="ox-section-lamina ox-style-blue">
+            <div class="ox-lamina-visual">
+                <img src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/houston-mic.webp" alt="Microfone Omnidirecional Headset Neptune">
+            </div>
+            
+            <div class="ox-lamina-content ox-pos-right">
+                <span class="ox-tech-text">02 // MICROFONE OMNIDIRECIONAL</span>
+                <h2>— Houston, me ouve?<br> 
+— Alto e claro.
+<sup class="ox-note-ref">2</sup></h2>
+                <div class="ox-hud-line"></div>
+
+Numa missão espacial, o que mantém a equipe viva é falar e ser ouvido de primeira. No jogo, é o que ganha a partida. O microfone omnidirecional capta sua voz de todas as direções. Vira a cabeça, inclina pra frente, comemora o clutch: o time continua te ouvindo. <P>A haste flexível deixa você posicionar do seu jeito, sem configurar nada.      </P>     
+            </div>
+        </div>
+    </section>
+    
+    <!-- ==========================================================================
+         LÂMINA DE VÍDEO BREAK 2 (FONE NEPTUNE - BREAK2NEPTUNE.MP4)
+         ========================================================================== -->
+    <section class="ox-l1-section ox-b2-section" id="ox-b2-section" aria-label="Vídeo Break 2 Fone Neptune">
+        <div class="ox-corner-decor ox-tl"></div>
+        <div class="ox-corner-decor ox-tr"></div>
+        <div class="ox-corner-decor ox-bl"></div>
+        <div class="ox-corner-decor ox-br"></div>
+
+        <div class="ox-l1-stars" aria-hidden="true">
+            <div class="ox-star-layer ox-star-layer-1"></div>
+            <div class="ox-star-layer ox-star-layer-2"></div>
+            <div class="ox-star-layer ox-star-layer-3"></div>
+        </div>
+
+        <div class="ox-l1-video-container">
+            <video 
+                id="ox-b2-video" 
+                class="ox-l1-video" 
+                src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/Break2Neptune.mp4" 
+                autoplay 
+                muted 
+                playsinline 
+                preload="auto"
+                aria-label="Vídeo de Apresentação Break 2 Fone Neptune">
+            </video>
+
+            <div class="ox-l1-vignette" aria-hidden="true"></div>
+
+            <!-- Botão Central de Play: Ícone no container quadrado estilo ox-port-chip -->
+            <button type="button" class="ox-l1-play-btn" id="ox-b2-play-btn" aria-label="Assistir com som" title="Play com som">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <polygon points="6,4 19,12 6,20"></polygon>
+                </svg>
+            </button>
+
+            <!-- Controles no cantinho (Play/Pause, Stop, Áudio e Tela Cheia) -->
+            <div class="ox-l1-corner-controls" id="ox-b2-corner-controls" aria-label="Controles do vídeo">
+                <button type="button" class="ox-corner-btn ox-btn-playpause is-playing" id="ox-b2-btn-playpause" aria-label="Pausar ou reproduzir" title="Play / Pause">
+                    <svg class="ox-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="6,4 19,12 6,20"></polygon>
+                    </svg>
+                    <svg class="ox-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+
+                <button type="button" class="ox-corner-btn ox-btn-stop" id="ox-b2-btn-stop" aria-label="Parar vídeo" title="Stop">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="6" width="12" height="12"></rect>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <button type="button" class="ox-corner-btn ox-btn-audio is-unmuted" id="ox-b2-btn-audio" aria-label="Ativar ou desativar som" title="Som">
+                    <svg class="ox-icon-vol-on" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <svg class="ox-icon-vol-off" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <!-- Botão Tela Cheia -->
+                <button type="button" class="ox-corner-btn ox-btn-fullscreen" id="ox-b2-btn-fullscreen" aria-label="Alternar tela cheia" title="Tela cheia">
+                    <svg class="ox-icon-fs-enter" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    <svg class="ox-icon-fs-exit" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Slider / Barra de Progresso Discreta -->
+            <div class="ox-l1-progress-wrap" id="ox-b2-progress" title="Progresso do vídeo">
+                <div class="ox-l1-progress-bar" id="ox-b2-prog-bar"></div>
+            </div>
+
+            <!-- Execução JavaScript via onerror (compatível com VTEX sem tag script) -->
+            <img src="//:0" style="display:none;" onerror="(function i2(){var v=document.getElementById('ox-b2-video'),p=document.getElementById('ox-b2-play-btn'),c=document.getElementById('ox-b2-corner-controls'),pp=document.getElementById('ox-b2-btn-playpause'),st=document.getElementById('ox-b2-btn-stop'),a=document.getElementById('ox-b2-btn-audio'),fs=document.getElementById('ox-b2-btn-fullscreen'),sec=document.getElementById('ox-b2-section'),pw=document.getElementById('ox-b2-progress'),pb=document.getElementById('ox-b2-prog-bar');if(!v||!p)return setTimeout(i2,40);function upPos(){if(!c)return;var t=sec||v,r=t.getBoundingClientRect(),winH=window.innerHeight||document.documentElement.clientHeight,mb=(window.innerWidth<=768)?13:24;if(r.bottom<=40||r.top>=(winH-40)){c.classList.add('is-offscreen');if(pw)pw.classList.add('is-offscreen');}else{c.classList.remove('is-offscreen');if(pw)pw.classList.remove('is-offscreen');}var cb=Math.max(mb,(winH-r.bottom)+mb);c.style.bottom=cb+'px';if(pw){pw.style.bottom=Math.max(0,winH-r.bottom)+'px';}}function rst(){v.muted=true;v.currentTime=0;v.play();p.classList.remove('is-hidden');if(c)c.classList.remove('is-visible');if(sec)sec.classList.remove('is-expanded');if(pb)pb.style.width='0%';if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();upPos();}p.onclick=function(){var l1=document.getElementById('ox-l1-video'),st1=document.getElementById('ox-btn-stop');if(l1&&!l1.muted){if(st1)st1.click();else{l1.muted=true;}}var b3=document.getElementById('ox-b3-video'),st3=document.getElementById('ox-b3-btn-stop');if(b3&&!b3.muted){if(st3)st3.click();else{b3.muted=true;}}v.currentTime=0;v.muted=false;v.volume=1;v.play();p.classList.add('is-hidden');if(c)c.classList.add('is-visible');if(sec)sec.classList.add('is-expanded');upPos();};v.onended=rst;if(st)st.onclick=function(e){e.stopPropagation();rst();};if(pp)pp.onclick=function(e){e.stopPropagation();v.paused?v.play():v.pause();};if(a)a.onclick=function(e){e.stopPropagation();v.muted=!v.muted;};if(fs)fs.onclick=function(e){e.stopPropagation();var t=sec||v;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(t.requestFullscreen)t.requestFullscreen();else if(t.webkitRequestFullscreen)t.webkitRequestFullscreen();else if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();}else{if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}};function ufs(){var is=!!(document.fullscreenElement||document.webkitFullscreenElement);if(fs)fs.classList.toggle('is-fs',is);upPos();}document.addEventListener('fullscreenchange',ufs);document.addEventListener('webkitfullscreenchange',ufs);v.onplay=function(){if(pp)pp.classList.add('is-playing');};v.onpause=function(){if(pp)pp.classList.remove('is-playing');};v.onvolumechange=function(){if(a)a.classList.toggle('is-unmuted',!v.muted);};function loop(){if(!v.paused&&pb&&v.duration){pb.style.width=((v.currentTime/v.duration)*100)+'%';}upPos();requestAnimationFrame(loop);}requestAnimationFrame(loop);window.addEventListener('scroll',upPos,{passive:true});window.addEventListener('resize',upPos,{passive:true});if(pw)pw.onclick=function(e){e.stopPropagation();var r=pw.getBoundingClientRect();if(v.duration){v.currentTime=Math.max(0,Math.min(v.duration,((e.clientX-r.left)/r.width)*v.duration));if(pb)pb.style.width=((v.currentTime/v.duration)*100)+'%';}};})()" alt="" />
+        </div>
+    </section>
+
+
+
+
+            <section>
+        <div class="ox-section-lamina ox-style-blue">
+            <div class="ox-lamina-visual">
+                <video autoplay muted loop playsinline preload="auto" aria-label="Infinity Mirror Fone Neptune" src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/videol2.mov">
+                    <source src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/videol2.mov" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/videol2.mov" type="video/quicktime">
+                </video>
+            </div>
+            
+            <div class="ox-lamina-content ox-pos-right">
+                <span class="ox-tech-text">03 // ILUMINAÇÃO INFINITY MIRROR</span>
+                <h2>Uma imensidão dentro de cada concha.
+<sup class="ox-note-ref">3</sup></h2>
+                <div class="ox-hud-line"></div>
+
+O infinity mirror abre um túnel de luz em cada lado da cabeça. Seria um buraco de minhoca? Pra onde leva? Não sabemos. Mas uma coisa podemos garantir: na live, na call ou no clutch, todo mundo vai olhar.
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <!-- LÂMINA DEPOIS DO MICROFONE: ESPECIFICAÇÕES DE COMBATE (2 CARDS MODULARES) -->
+    <section class="ox-features-section">
+        <div class="ox-fan-top" style="margin-bottom: 3.5rem;">
+            <div class="ox-fan-top-left">
+                <span class="ox-tech-text">04 // CONFORTO & ERGONOMIA</span>
+                <h2>Feito para longas missões<sup class="ox-note-ref">4</sup></h2>
+            </div>
+            <div class="ox-fan-divider" aria-hidden="true"></div>
+            <div class="ox-fan-top-right">
+                <p>Partida longa pede conforto de verdade. O arco autoajustável se adapta à sua cabeça: é só puxar, colocar e soltar. O arco e as conchas são almofadados pra longas sessões, e as almofadas ainda ajudam a isolar o som externo, pra você ouvir só o jogo.
+</p>
+            </div>
+        </div>
+
+        <div class="ox-features-grid">
+            <!-- Card 1 -->
+            <div class="ox-feature-card">
+                <div
+                    class="ox-card-bg"
+                    style="
+                        background-image: url(&quot;https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/neptuneheadband.webp&quot;);
+                    "></div>
+                <div class="ox-card-content">
+                    <div class="ox-icon-zone">D</div>
+                    <h3>Headband autoajustável</h3>
+                    <div class="ox-card-desc">
+                        <p>
+                           Nenhum astronauta entra em missão com roupa que não serve. O arco autoajustável se molda à sua cabeça: puxe, coloque e solte.
+                        </p>
+                    </div>
+                    <div class="ox-card-tech-id">ADJUSTMENT: AUTO</div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="ox-feature-card">
+                <div
+                    class="ox-card-bg"
+                    style="
+                        background-image: url(&quot;https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/neptunealmofada.webp&quot;);
+                    "></div>
+                <div class="ox-card-content">
+                    <div class="ox-icon-zone">P</div>
+                    <h3>ALMOFADAS EM COURO ECOLÓGICO</h3>
+                    <div class="ox-card-desc">
+                        <p>
+                           As almofadas em couro ecológico dão maciez e ajudam a isolar o som de fora.
+                        </p>
+                    </div>
+                    <div class="ox-card-tech-id">SOFTNESS: EXTREME</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- LAMINA 1: CONFORTO COM VÍDEO EM AUTOPLAY -->
+    <section>
+        <div class="ox-section-lamina ox-style-dark">
+            <div class="ox-corner-decor ox-tl"></div>
+            <div class="ox-corner-decor ox-br"></div>
+            
+            <div class="ox-lamina-content ox-pos-left">
+                <span class="ox-tech-text">05 // CONTROLES INTEGRADOS</span>
+                <h2>Centro de controle, na ponta do dedo.<sup class="ox-note-ref">5</sup></h2>
+                <div class="ox-hud-line"></div>
+                <p>
+                   Numa nave, os comandos ficam ao alcance. No headset também. O botão de mute fica na própria concha: um deslize e o microfone silencia. A roda de volume fica logo ao lado: gire e ajuste sem abrir menu e sem tirar os olhos da tela.
+                </p>
+            </div>
+
+            <div class="ox-lamina-visual ox-hotspot-wrapper">
+                <!-- Camada 1: Imagem P&B Escura (Base para Spotlight) -->
+                <img src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/neptuneswitch.webp" alt="Controles Headset Neptune BW" class="ox-abs-img ox-img-bw">
+
+                <!-- Camada 2: Imagem Colorida (Revelada com Spotlight) -->
+                <img src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/neptuneswitch.webp" alt="Controles Headset Neptune Color" class="ox-abs-img ox-img-color">
+
+                <!-- Hotspot 1: Switch de Mute -->
+                <div class="ox-hs-trigger ox-hs-mute">
+                    <div class="ox-hs-box">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="ox-hs-label">SWITCH DE MUTE</div>
+                </div>
+
+                <!-- Hotspot 2: Roda de Volume -->
+                <div class="ox-hs-trigger ox-hs-volume">
+                    <div class="ox-hs-box">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="ox-hs-label">RODA DE VOLUME</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+            <!-- LAMINA 2: AMD FSR -->
+    <section>
+        <div class="ox-section-lamina ox-style-blue ox-fsr-lamina">
+            <div class="ox-lamina-visual ox-fsr-visual">
+                <img class="ox-fsr-img" src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/assets/neptuneusbcable.webp" alt="Cena de jogo com AMD FidelityFX Super Resolution">
+
+         
+            </div>
+            
+            <div class="ox-lamina-content ox-pos-right">
+                <span class="ox-tech-text">06 // CONECTIVIDADE UNIVERSAL</span>
+                <h2>Compatibilidade universal<sup class="ox-note-ref">6</sup></h2>
+                <div class="ox-hud-line"></div>
+                <p>
+O P2 é o encaixe que você já conhece dos seus outros fones, e serve em qualquer dispositivo com essa entrada. Plugou o P2 e o USB, e a missão começa. São 2 metros de cabo pra jogar à vontade.
+</p>
+
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+    
+    <!-- VÍDEO BREAK 3: ANTES DE ARQUIVOS DO SISTEMA -->
+    <section class="ox-l1-section ox-b3-section" id="ox-b3-section" aria-label="Vídeo Break 3 Fone Neptune">
+        <div class="ox-corner-decor ox-tl"></div>
+        <div class="ox-corner-decor ox-tr"></div>
+        <div class="ox-corner-decor ox-bl"></div>
+        <div class="ox-corner-decor ox-br"></div>
+
+        <div class="ox-l1-stars" aria-hidden="true">
+            <div class="ox-star-layer ox-star-layer-1"></div>
+            <div class="ox-star-layer ox-star-layer-2"></div>
+            <div class="ox-star-layer ox-star-layer-3"></div>
+        </div>
+
+        <div class="ox-l1-video-container">
+            <video 
+                id="ox-b3-video" 
+                class="ox-l1-video" 
+                src="https://raw.githubusercontent.com/criacaoibyte/lp-fone-neptune/main/Break3Neptune.mp4" 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                preload="auto"
+                aria-label="Vídeo de Apresentação Break 3 Fone Neptune">
+            </video>
+
+            <div class="ox-l1-vignette" aria-hidden="true"></div>
+
+            <!-- Botão Central de Play -->
+            <button type="button" class="ox-l1-play-btn" id="ox-b3-play-btn" aria-label="Assistir com som" title="Play com som">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <polygon points="6,4 19,12 6,20"></polygon>
+                </svg>
+            </button>
+
+            <!-- Controles no cantinho (Play/Pause, Stop, Áudio e Tela Cheia) -->
+            <div class="ox-l1-corner-controls" id="ox-b3-corner-controls" aria-label="Controles do vídeo">
+                <button type="button" class="ox-corner-btn ox-btn-playpause is-playing" id="ox-b3-btn-playpause" aria-label="Pausar ou reproduzir" title="Play / Pause">
+                    <svg class="ox-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="6,4 19,12 6,20"></polygon>
+                    </svg>
+                    <svg class="ox-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+
+                <button type="button" class="ox-corner-btn ox-btn-stop" id="ox-b3-btn-stop" aria-label="Parar vídeo" title="Stop">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="6" width="12" height="12"></rect>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <button type="button" class="ox-corner-btn ox-btn-audio is-unmuted" id="ox-b3-btn-audio" aria-label="Ativar ou desativar som" title="Som">
+                    <svg class="ox-icon-vol-on" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <svg class="ox-icon-vol-off" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                    </svg>
+                </button>
+
+                <span class="ox-corner-divider" aria-hidden="true"></span>
+
+                <!-- Botão Tela Cheia -->
+                <button type="button" class="ox-corner-btn ox-btn-fullscreen" id="ox-b3-btn-fullscreen" aria-label="Alternar tela cheia" title="Tela cheia">
+                    <svg class="ox-icon-fs-enter" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    <svg class="ox-icon-fs-exit" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Slider / Barra de Progresso Discreta -->
+            <div class="ox-l1-progress-wrap" id="ox-b3-progress" title="Progresso do vídeo">
+                <div class="ox-l1-progress-bar" id="ox-b3-prog-bar"></div>
+            </div>
+
+            <!-- Execução JavaScript via onerror (compatível com VTEX sem tag script) -->
+            <img src="//:0" style="display:none;" onerror="(function i3(){var v=document.getElementById('ox-b3-video'),p=document.getElementById('ox-b3-play-btn'),c=document.getElementById('ox-b3-corner-controls'),pp=document.getElementById('ox-b3-btn-playpause'),st=document.getElementById('ox-b3-btn-stop'),a=document.getElementById('ox-b3-btn-audio'),fs=document.getElementById('ox-b3-btn-fullscreen'),sec=document.getElementById('ox-b3-section'),pw=document.getElementById('ox-b3-progress'),pb=document.getElementById('ox-b3-prog-bar');if(!v||!p)return setTimeout(i3,40);function upPos(){if(!c)return;var t=sec||v,r=t.getBoundingClientRect(),winH=window.innerHeight||document.documentElement.clientHeight,mb=(window.innerWidth<=768)?13:24;if(r.bottom<=40||r.top>=(winH-40)){c.classList.add('is-offscreen');if(pw)pw.classList.add('is-offscreen');}else{c.classList.remove('is-offscreen');if(pw)pw.classList.remove('is-offscreen');}var cb=Math.max(mb,(winH-r.bottom)+mb);c.style.bottom=cb+'px';if(pw){pw.style.bottom=Math.max(0,winH-r.bottom)+'px';}}function rst(){v.muted=true;v.currentTime=0;v.play();p.classList.remove('is-hidden');if(c)c.classList.remove('is-visible');if(sec)sec.classList.remove('is-expanded');if(pb)pb.style.width='0%';if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();upPos();}p.onclick=function(){var l1=document.getElementById('ox-l1-video'),st1=document.getElementById('ox-btn-stop');if(l1&&!l1.muted){if(st1)st1.click();else{l1.muted=true;}}var b2=document.getElementById('ox-b2-video'),st2=document.getElementById('ox-b2-btn-stop');if(b2&&!b2.muted){if(st2)st2.click();else{b2.muted=true;}}v.currentTime=0;v.muted=false;v.volume=1;v.play();p.classList.add('is-hidden');if(c)c.classList.add('is-visible');if(sec)sec.classList.add('is-expanded');upPos();};v.onended=rst;if(st)st.onclick=function(e){e.stopPropagation();rst();};if(pp)pp.onclick=function(e){e.stopPropagation();v.paused?v.play():v.pause();};if(a)a.onclick=function(e){e.stopPropagation();var n=!v.muted;if(!n){var l1=document.getElementById('ox-l1-video');if(l1)l1.muted=true;var b2=document.getElementById('ox-b2-video');if(b2)b2.muted=true;}v.muted=n;};if(fs)fs.onclick=function(e){e.stopPropagation();var t=sec||v;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(t.requestFullscreen)t.requestFullscreen();else if(t.webkitRequestFullscreen)t.webkitRequestFullscreen();else if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();}else{if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}};function ufs(){var is=!!(document.fullscreenElement||document.webkitFullscreenElement);if(fs)fs.classList.toggle('is-fs',is);upPos();}document.addEventListener('fullscreenchange',ufs);document.addEventListener('webkitfullscreenchange',ufs);v.onplay=function(){if(pp)pp.classList.add('is-playing');};v.onpause=function(){if(pp)pp.classList.remove('is-playing');};v.onvolumechange=function(){if(a)a.classList.toggle('is-unmuted',!v.muted);};function loop(){if(!v.paused&&pb&&v.duration){pb.style.width=((v.currentTime/v.duration)*100)+'%';}upPos();requestAnimationFrame(loop);}requestAnimationFrame(loop);window.addEventListener('scroll',upPos,{passive:true});window.addEventListener('resize',upPos,{passive:true});if(pw)pw.onclick=function(e){e.stopPropagation();var r=pw.getBoundingClientRect();if(v.duration){v.currentTime=Math.max(0,Math.min(v.duration,((e.clientX-r.left)/r.width)*v.duration));if(pb)pb.style.width=((v.currentTime/v.duration)*100)+'%';}};})()" alt="" />
+        </div>
+    </section>
+
+    <section class="ox-downloads-section">
+        <span class="ox-tech-text">07 // SUPORTE TÉCNICO</span>
+        <h2 style="margin-bottom: 1rem;">ARQUIVOS DO SISTEMA</h2>
+        <div class="ox-hud-line" style="max-width: 100px; margin: 2rem auto;"></div>
+
+        <div class="ox-product-grid">
+            
+            <!-- Card Download 1 -->
+            <div class="ox-product-card">
+                <div>
+                    <div class="ox-download-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <div class="ox-prod-name">MANUAL.PDF</div>
+                    <div class="ox-prod-tag">GUIA DE USO</div>
+                </div>
+                <a href="https://ibytef01.sharepoint.com/:b:/s/produtos-ibyte/IQBw_1bf3vx6RJTMHAJINIYZAQmA17cA8NV9do_sYVLk7Ds?e=FHciS9" class="ox-btn-download" data-text="DOWNLOAD [PDF]"><span>DOWNLOAD [PDF]</span></a>
+            </div>
+
+
+
+        </div>
+    </section>
+    
+    <!-- BLOCO SIMPLES DE SEO -->
+    <section class="ox-seo-container">
+        <div class="ox-seo-wrapper">
+            <h4 style="color: #444455; font-size: 0.9rem; margin-bottom: 1rem; text-align: center;">SOBRE A AMD RADEON RX 580</h4>
+            <p class="ox-seo-text">
+O Headset Gamer Neptune combina áudio com driver de 50 mm, microfone omnidirecional com haste flexível e infinity mirror nas conchas, nas versões branca e preta. O arco autoajustável e as almofadas em couro ecológico dão conforto e ajudam a isolar o som externo. O botão de mute e a roda de volume ficam no próprio fone, e a conexão P2 de 3,5 mm + USB-A, com 2 metros de cabo, serve em dispositivos com entrada P2.            </p>
+        </div>
+    </section>
+
+    <section class="ox-legal-notes">
+        <div class="ox-legal-wrap">
+            <div class="ox-legal-desktop">
+                <h4 class="ox-legal-title">Notas Legais</h4>
+                <ol class="ox-legal-list">
+                    <li><strong>1.</strong> O desempenho acústico, a resposta de frequência (20 Hz a 20 kHz) dos drivers de 50 mm e a percepção de áudio posicional 3D dependem do hardware de áudio do computador ou console, das configurações do sistema operacional, equalizações ativas e do suporte nativo da aplicação ou jogo à espacialização sonora.</li>
+                    <li><strong>2.</strong> A captação de voz e a sensibilidade do microfone omnidirecional podem variar conforme o posicionamento da haste flexível, o nível de ruído ambiente, a acústica do local e os ajustes de ganho ou cancelamento configurados nos softwares de comunicação (como Discord, TeamSpeak e chamadas in-game).</li>
+                    <li><strong>3.</strong> O efeito Infinity Mirror e a iluminação LED nas conchas dependem de alimentação via conector USB conectado a uma porta energizada padrão (5V). As imagens, animações e efeitos luminosos apresentados nesta página são representações visuais ilustrativas.</li>
+                    <li><strong>4.</strong> O arco autoajustável e as conchas acolchoadas foram desenvolvidos para conforto prolongado e isolamento acústico passivo. A percepção de vedação sonora, pressão e adaptação ergonômica pode variar de acordo com a anatomia de cada usuário.</li>
+                    <li><strong>5.</strong> Os controles de volume analógico e a chave seletora de silenciamento (mute) atuam diretamente no circuito físico do headset, operando de forma independente de softwares de gerenciamento ou drivers proprietários.</li>
+                    <li><strong>6.</strong> A compatibilidade multiplataforma aplica-se a dispositivos com entrada analógica P2/P3 de 3.5 mm (áudio estéreo e microfone). Placas-mãe ou gabinetes com conexões P2 dedicadas e separadas para áudio e microfone podem requerer o uso de um cabo adaptador splitter P3 para 2x P2.</li>
+                    <li><strong>7.</strong> As imagens esquemáticas e renderizações da estrutura interna do headset são representações visuais concebidas para fins ilustrativos e explicativos de engenharia. As especificações técnicas estão sujeitas a atualizações sem aviso prévio.</li>
+                </ol>
+            </div>
+            <details class="ox-legal-accordion ox-legal-mobile">
+                <summary class="ox-legal-title">Notas Legais</summary>
+                <ol class="ox-legal-list">
+                    <li><strong>1.</strong> O desempenho acústico, a resposta de frequência (20 Hz a 20 kHz) dos drivers de 50 mm e a percepção de áudio posicional 3D dependem do hardware de áudio do computador ou console, das configurações do sistema operacional, equalizações ativas e do suporte nativo da aplicação ou jogo à espacialização sonora.</li>
+                    <li><strong>2.</strong> A captação de voz e a sensibilidade do microfone omnidirecional podem variar conforme o posicionamento da haste flexível, o nível de ruído ambiente, a acústica do local e os ajustes de ganho ou cancelamento configurados nos softwares de comunicação (como Discord, TeamSpeak e chamadas in-game).</li>
+                    <li><strong>3.</strong> O efeito Infinity Mirror e a iluminação LED nas conchas dependem de alimentação via conector USB conectado a uma porta energizada padrão (5V). As imagens, animações e efeitos luminosos apresentados nesta página são representações visuais ilustrativas.</li>
+                    <li><strong>4.</strong> O arco autoajustável e as conchas acolchoadas foram desenvolvidos para conforto prolongado e isolamento acústico passivo. A percepção de vedação sonora, pressão e adaptação ergonômica pode variar de acordo com a anatomia de cada usuário.</li>
+                    <li><strong>5.</strong> Os controles de volume analógico e a chave seletora de silenciamento (mute) atuam diretamente no circuito físico do headset, operando de forma independente de softwares de gerenciamento ou drivers proprietários.</li>
+                    <li><strong>6.</strong> A compatibilidade multiplataforma aplica-se a dispositivos com entrada analógica P2/P3 de 3.5 mm (áudio estéreo e microfone). Placas-mãe ou gabinetes com conexões P2 dedicadas e separadas para áudio e microfone podem requerer o uso de um cabo adaptador splitter P3 para 2x P2.</li>
+                    <li><strong>7.</strong> As imagens esquemáticas e renderizações da estrutura interna do headset são representações visuais concebidas para fins ilustrativos e explicativos de engenharia. As especificações técnicas estão sujeitas a atualizações sem aviso prévio.</li>
+                </ol>
+            </details>
+        </div>
+    </section>
+
+</div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
